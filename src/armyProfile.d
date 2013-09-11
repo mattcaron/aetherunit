@@ -1,4 +1,4 @@
-import utility.accessor_template;
+import utility.accessorTemplate;
 
 class armyProfile {
 
