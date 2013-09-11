@@ -2,7 +2,6 @@ import utility.accessorTemplate;
 
 class armyProfile {
 
-
     mixin declarationAndProperties!("int", "DEX");
     mixin declarationAndProperties!("int", "STR");
     mixin declarationAndProperties!("int", "CON");

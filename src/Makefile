@@ -21,8 +21,8 @@ all: $(TARGET)
 clean:
 	-rm $(TARGET) $(OBJECTS)
 
-mainWindow.o: utility/accessorTemplate.d armyProfile.d \
-		$(RESOURCE_DIR)/main.glade
+mainController.o: utility/accessorTemplate.d armyProfile.d \
+	          $(RESOURCE_DIR)/main.glade mainView.d
 armyprofile.o: utility/accessorTemplate.d
 
 # IMPORTANT: Flags need to come AFTER target and sources for gdc 4.6
