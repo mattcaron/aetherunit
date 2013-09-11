@@ -9,5 +9,4 @@ class armyProfile {
     mixin declarationAndProperties!("int", "TEK");
     mixin declarationAndProperties!("int", "MOR");
     mixin declarationAndProperties!("int", "PRE");
-
 }
