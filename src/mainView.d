@@ -20,7 +20,6 @@ import utility.debugPrint;
  */
 const string mainWindowResource = "main.glade";
 
-
 /**
  * Template to emit code to hook a spin button to a callback function
  *
@@ -66,14 +65,14 @@ class mainView {
     mixin declarationAndProperties!("armyProfile", "profile");
 
     mixin declarationAndProperties!("Window", "w");
-    mixin declarationAndProperties!("Label", "armyBaseCost");
+    mixin declarationAndProperties!("Label", "lblArmyBaseCost");
 
-    mixin generateSpinButtonCallback!("armyDEX", "profile", "DEX");
-    mixin generateSpinButtonCallback!("armySTR", "profile", "STR");
-    mixin generateSpinButtonCallback!("armyCON", "profile", "CON");
-    mixin generateSpinButtonCallback!("armyTEK", "profile", "TEK");
-    mixin generateSpinButtonCallback!("armyMOR", "profile", "MOR");
-    mixin generateSpinButtonCallback!("armyPRE", "profile", "PRE");
+    mixin generateSpinButtonCallback!("sbArmyDEX", "profile", "DEX");
+    mixin generateSpinButtonCallback!("sbArmySTR", "profile", "STR");
+    mixin generateSpinButtonCallback!("sbArmyCON", "profile", "CON");
+    mixin generateSpinButtonCallback!("sbArmyTEK", "profile", "TEK");
+    mixin generateSpinButtonCallback!("sbArmyMOR", "profile", "MOR");
+    mixin generateSpinButtonCallback!("sbArmyPRE", "profile", "PRE");
 
     this(mainController controller, armyProfile profile) {
         this.controller = controller;
@@ -108,17 +107,17 @@ class mainView {
                     } 
                 );
             }
-            armyBaseCost = cast(Label)g.getObject("armyBaseCost");
-            if (armyBaseCost is null) {
-                writefln("Unable to get label armyBaseCost");
+            lblArmyBaseCost = cast(Label)g.getObject("lblArmyBaseCost");
+            if (lblArmyBaseCost is null) {
+                writefln("Unable to get label lblArmyBaseCost");
                 retVal = false;
             }
-            mixin(hookSpinButton!("armyDEX"));
-            mixin(hookSpinButton!("armySTR"));
-            mixin(hookSpinButton!("armyCON"));
-            mixin(hookSpinButton!("armyTEK"));
-            mixin(hookSpinButton!("armyMOR"));
-            mixin(hookSpinButton!("armyPRE"));
+            mixin(hookSpinButton!("sbArmyDEX"));
+            mixin(hookSpinButton!("sbArmySTR"));
+            mixin(hookSpinButton!("sbArmyCON"));
+            mixin(hookSpinButton!("sbArmyTEK"));
+            mixin(hookSpinButton!("sbArmyMOR"));
+            mixin(hookSpinButton!("sbArmyPRE"));
         }
         return retVal;
     }

@@ -319,7 +319,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="armyDEX">
+                      <object class="GtkSpinButton" id="sbArmyDEX">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">•</property>
@@ -333,7 +333,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="armySTR">
+                      <object class="GtkSpinButton" id="sbArmySTR">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">•</property>
@@ -347,7 +347,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="armyCON">
+                      <object class="GtkSpinButton" id="sbArmyCON">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">•</property>
@@ -361,7 +361,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="armyTEK">
+                      <object class="GtkSpinButton" id="sbArmyTEK">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">•</property>
@@ -375,7 +375,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="armyMOR">
+                      <object class="GtkSpinButton" id="sbArmyMOR">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">•</property>
@@ -389,7 +389,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="armyPRE">
+                      <object class="GtkSpinButton" id="sbArmyPRE">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">•</property>
@@ -416,7 +416,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="armyBaseCost">
+                      <object class="GtkLabel" id="lblArmyBaseCost">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">50</property>
