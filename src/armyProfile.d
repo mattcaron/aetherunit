@@ -3,6 +3,8 @@ import utility.debugPrint;
 
 class armyProfile {
 
+    immutable int MINIMUM_ARMY_COST = 50;
+
     private int summation(int x) {
         int temp = 0;
         foreach (int i; 0..x+1) {
@@ -22,6 +24,9 @@ class armyProfile {
     int recalculate() {
         armyBaseCost = summation(DEX) + summation(STR) + summation(CON) + 
                        summation(TEK) + summation(MOR) + summation(PRE);
+        if (armyBaseCost < MINIMUM_ARMY_COST) {
+            armyBaseCost = MINIMUM_ARMY_COST;
+        }
         return armyBaseCost;
     }
 
