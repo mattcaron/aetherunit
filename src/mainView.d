@@ -1,4 +1,5 @@
 import std.stdio;
+import std.conv;
 
 import gtk.Builder;
 import gtk.Button;
@@ -18,7 +19,7 @@ import utility.debugPrint;
 /**
  * Constant string which is the name of our UI description file.
  */
-const string mainWindowResource = "main.glade";
+immutable string MAIN_WINDOW_RESOURCE = "main.glade";
 
 /**
  * Template to emit code to hook a spin button to a callback function
@@ -43,46 +44,56 @@ template hookSpinButton(string buttonName) {
  * This callback will automatically update the given variable with
  * the current value of the SpinButton
  *
- * @param buttonName name of the button you want to hook
- * @param className name of the class in which the variable lives.
- * @param variableName name of the class variable to which the button
- *                     should be bound
+ * @param variableName name of the base variable from which all things
+ *                     are derived.
  */
-mixin template generateSpinButtonCallback(string buttonName,
-                                          string className, 
-                                          string variableName) {
+mixin template generateSpinButtonCallback(string variableName) {
     mixin (
-        "private void "~buttonName~"Changed(SpinButton button) {
-            "~className~"."~variableName~" = button.getValueAsInt();
-            "~className~".recalculate();
-            // armyBaseCost.setValue("~className~".armyBaseCost);
+        "private void sbArmy"~variableName~"Changed(SpinButton button) {
+            controller."~variableName~"Updated(button.getValueAsInt());
         }"
     );
 }
 
 class mainView {
+
     mixin declarationAndProperties!("mainController", "controller");
     mixin declarationAndProperties!("armyProfile", "profile");
 
     mixin declarationAndProperties!("Window", "w");
     mixin declarationAndProperties!("Label", "lblArmyBaseCost");
 
-    mixin generateSpinButtonCallback!("sbArmyDEX", "profile", "DEX");
-    mixin generateSpinButtonCallback!("sbArmySTR", "profile", "STR");
-    mixin generateSpinButtonCallback!("sbArmyCON", "profile", "CON");
-    mixin generateSpinButtonCallback!("sbArmyTEK", "profile", "TEK");
-    mixin generateSpinButtonCallback!("sbArmyMOR", "profile", "MOR");
-    mixin generateSpinButtonCallback!("sbArmyPRE", "profile", "PRE");
+    mixin generateSpinButtonCallback!("DEX");
+    mixin generateSpinButtonCallback!("STR");
+    mixin generateSpinButtonCallback!("CON");
+    mixin generateSpinButtonCallback!("TEK");
+    mixin generateSpinButtonCallback!("MOR");
+    mixin generateSpinButtonCallback!("PRE");
 
-    this(mainController controller, armyProfile profile) {
+    /**
+     * Initializing constructor
+     *
+     * @param controller the controller to which callbacks should be
+     * directed.
+     */
+    this(mainController controller) {
         this.controller = controller;
-        this.profile = profile;
     }
 
+    /**
+     * Initialization function
+     *
+     * This function must be called before calling any other functions
+     *
+     * @param args arguments passed on the command line
+     *
+     * @return true on success
+     * @return false on failure
+     */
     bool init(string[] args) {
         // IMPORTANT: Main.init needs to be called before Builder is
         // created.
-        string gladestring = import(mainWindowResource);
+        string gladestring = import(MAIN_WINDOW_RESOURCE);
         bool retVal = true;
 
         Main.init(args);
@@ -90,7 +101,7 @@ class mainView {
         Builder g = new Builder();
         
         if (!g.addFromString(gladestring, gladestring.length)) {
-            writefln("Couldn't find glade file: %s", mainWindowResource);
+            writefln("Couldn't find glade file: %s", MAIN_WINDOW_RESOURCE);
             retVal = false;
         } 
         else {
@@ -121,7 +132,19 @@ class mainView {
         }
         return retVal;
     }
- 
+
+    /**
+     * Update the army base cost label
+     *
+     * @param value Value to which the label should be set.
+     */
+    void lblArmyBaseCostUpdate(int value) {
+        lblArmyBaseCost.setText(to!string(value));
+    }
+
+    /**
+     * Show the view and run the main GTK message pump.
+     */
     void run() {
         w.showAll();
         Main.run();
