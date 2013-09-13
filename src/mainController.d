@@ -30,7 +30,6 @@ mixin template generateModelUpdate(string variableName) {
  */
 class mainController {
 
-    mixin declarationAndProperties!("string", "resourceFile");
     mixin declarationAndProperties!("armyProfile", "profile");
     mixin declarationAndProperties!("mainView", "view");
     mixin generateModelUpdate!("DEX");
