@@ -1,6 +1,26 @@
 import utility.accessorTemplate;
 import utility.debugPrint;
 
+import statList;
+
+
+mixin template statListProperties(string name)
+{
+    mixin (
+        "@property {
+            int "~name~"()
+            {
+                return armyStats."~name~";
+            }
+
+            int "~name~"(int "~name~")
+            {
+                return armyStats."~name~" = "~name~";
+            }
+        }"
+    );
+}
+
 class armyProfile {
 
     immutable int MINIMUM_ARMY_COST = 50;
@@ -13,13 +33,18 @@ class armyProfile {
         return temp;
     }
 
-    mixin declarationAndProperties!("int", "DEX");
-    mixin declarationAndProperties!("int", "STR");
-    mixin declarationAndProperties!("int", "CON");
-    mixin declarationAndProperties!("int", "TEK");
-    mixin declarationAndProperties!("int", "MOR");
-    mixin declarationAndProperties!("int", "PRE");
+    mixin declarationAndProperties!("statList", "armyStats");
     mixin declarationAndProperties!("int", "armyBaseCost");
+    mixin statListProperties!("DEX");
+    mixin statListProperties!("STR");
+    mixin statListProperties!("CON");
+    mixin statListProperties!("TEK");
+    mixin statListProperties!("MOR");
+    mixin statListProperties!("PRE");
+
+    this() {
+        armyStats = new statList();
+    }
 
     int recalculate() {
         armyBaseCost = summation(DEX) + summation(STR) + summation(CON) + 
