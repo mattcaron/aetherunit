@@ -2,10 +2,12 @@ import std.stdio;
 
 import gtk.Main;
 
-import armyProfile;
-import mainView;
 import utility.accessorTemplate;
 import utility.debugPrint;
+
+import armyProfile;
+import mainView;
+import unit;
 
 /**
  * Template to generate a model update function

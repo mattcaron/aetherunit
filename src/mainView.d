@@ -11,10 +11,11 @@ import gtk.Label;
 
 import gobject.Type;
 
-import armyProfile;
-import mainController;
 import utility.accessorTemplate;
 import utility.debugPrint;
+
+import armyProfile;
+import mainController;
 
 /**
  * Constant string which is the name of our UI description file.
