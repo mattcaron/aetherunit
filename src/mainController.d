@@ -20,7 +20,7 @@ mixin template generateModelUpdate(string variableName) {
     mixin (
         "public void "~variableName~"Updated(int newValue) {
             profile."~variableName~" = newValue;
-            view.lblArmyBaseCostUpdate(profile.recalculate());
+            view.armyBaseCostUpdate(profile.recalculate());
         }"
     );
 }

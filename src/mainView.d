@@ -139,7 +139,7 @@ class mainView {
      *
      * @param value Value to which the label should be set.
      */
-    void lblArmyBaseCostUpdate(int value) {
+    void armyBaseCostUpdate(int value) {
         lblArmyBaseCost.setText(to!string(value));
     }
 
