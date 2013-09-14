@@ -7,7 +7,9 @@ import utility.debugPrint;
 
 import armyProfile;
 import mainView;
-import unit;
+import basicUnit;
+import supportUnit;
+import eliteUnit;
 
 /**
  * Template to generate a model update function
@@ -32,8 +34,20 @@ mixin template generateModelUpdate(string variableName) {
  */
 class mainController {
 
-    mixin declarationAndProperties!("armyProfile", "profile");
+    /***************** Views *****************/
     mixin declarationAndProperties!("mainView", "view");
+
+    /***************** Models ****************/
+    mixin declarationAndProperties!("armyProfile", "profile");
+    // TODO: more specific subtypes here? (Personalities, melee
+    // weapons, vehicles, etc?
+    mixin declarationAndProperties!("basicUnit[]", "basicUnits");
+    mixin declarationAndProperties!("eliteUnit[]", "eliteUnits");
+    mixin declarationAndProperties!("supportUnit[]", "supportUnits");
+    // mixin declarationAndProperties!("armor[]", "armors");
+    // mixin declarationAndProperties!("weapon[]", "weapons");
+
+    /***************** Callbacks *************/
     mixin generateModelUpdate!("DEX");
     mixin generateModelUpdate!("STR");
     mixin generateModelUpdate!("CON");
