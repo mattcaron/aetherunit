@@ -23,6 +23,11 @@ import mainController;
 immutable string MAIN_WINDOW_RESOURCE = "main.glade";
 
 /**
+ * Constant string which is the name of our parent window
+ */
+immutable string MAIN_WINDOW_NAME = "mainWindow";
+
+/**
  * Template to emit code to hook a spin button to a callback function
  *
  * @param buttonName name of the button
@@ -106,7 +111,7 @@ class mainView {
             retVal = false;
         } 
         else {
-            w = cast(Window)g.getObject("mainWindow");
+            w = cast(Window)g.getObject(MAIN_WINDOW_NAME);
             
             if (w is null) {
                 writefln("Unable to get handle to main window");
