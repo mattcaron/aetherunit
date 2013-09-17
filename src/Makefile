@@ -23,6 +23,8 @@ clean:
 
 mainView.o: mainView.d utility/accessorTemplate.d armyProfile.d \
 	    $(RESOURCE_DIR)/main.glade mainController.d
+errorView.o: errorView.d utility/accessorTemplate.d \
+	    $(RESOURCE_DIR)/errorView.glade
 mainController.o: mainController.d utility/accessorTemplate.d \
 		  armyProfile.d mainView.d statList.d
 armyProfile.o: utility/accessorTemplate.d statList.d

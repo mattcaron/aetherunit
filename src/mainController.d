@@ -5,8 +5,10 @@ import gtk.Main;
 import utility.accessorTemplate;
 import utility.debugPrint;
 
-import armyProfile;
 import mainView;
+import errorView;
+
+import armyProfile;
 import basicUnit;
 import supportUnit;
 import eliteUnit;
@@ -21,8 +23,17 @@ import eliteUnit;
 mixin template generateModelUpdate(string variableName) {
     mixin (
         "public void "~variableName~"Updated(int newValue) {
-            profile."~variableName~" = newValue;
-            view.armyBaseCostUpdate(profile.recalculate());
+            if (profile.attributeValueInRange(newValue)) {
+                profile."~variableName~" = newValue;
+                view.armyBaseCostUpdate(profile.recalculate());
+            } else {
+                errorView error = new errorView();
+                error.popup(\""~variableName~"\" ~
+                            \"is out of range. This is not your fault,\n\" ~
+                            \"the UI should never have let you get here.\n\" ~
+                            \"Please contact the software authors and \n\" ~
+                            \"tell them about it.\");
+            }
         }"
     );
 }

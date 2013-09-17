@@ -24,14 +24,8 @@ mixin template statListProperties(string name)
 class armyProfile {
 
     immutable int MINIMUM_ARMY_COST = 50;
-
-    private int summation(int x) {
-        int temp = 0;
-        foreach (int i; 0..x+1) {
-            temp += i;
-        }
-        return temp;
-    }
+    immutable int MINIMUM_ATTRIBUTE_VALUE = 0;
+    immutable int MAXIMUM_ATTRIBUTE_VALUE = 10;
 
     mixin declarationAndProperties!("statList", "armyStats");
     mixin declarationAndProperties!("int", "armyBaseCost");
@@ -41,6 +35,14 @@ class armyProfile {
     mixin statListProperties!("TEK");
     mixin statListProperties!("MOR");
     mixin statListProperties!("PRE");
+
+    private int summation(int x) {
+        int temp = 0;
+        foreach (int i; 0..x+1) {
+            temp += i;
+        }
+        return temp;
+    }
 
     this() {
         armyStats = new statList();
@@ -53,6 +55,15 @@ class armyProfile {
             armyBaseCost = MINIMUM_ARMY_COST;
         }
         return armyBaseCost;
+    }
+
+    bool attributeValueInRange(int newValue) {
+        bool retVal = false;
+        if (newValue >= MINIMUM_ATTRIBUTE_VALUE &&
+            newValue <= MAXIMUM_ATTRIBUTE_VALUE) {
+            retVal = true;
+        }
+        return retVal;
     }
 
 }
