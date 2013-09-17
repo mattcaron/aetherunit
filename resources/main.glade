@@ -31,12 +31,6 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <object class="GtkTreeStore" id="unitTree">
-    <columns>
-      <!-- column-name gchararray1 -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
   <object class="GtkWindow" id="mainWindow">
     <property name="width_request">400</property>
     <property name="height_request">800</property>
@@ -333,8 +327,8 @@
                             <property name="label" translatable="yes">TEK</property>
                           </object>
                           <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">1</property>
+                            <property name="left_attach">6</property>
+                            <property name="top_attach">0</property>
                             <property name="width">1</property>
                             <property name="height">1</property>
                           </packing>
@@ -348,8 +342,8 @@
                             <property name="adjustment">adjustment4</property>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">1</property>
+                            <property name="left_attach">7</property>
+                            <property name="top_attach">0</property>
                             <property name="width">1</property>
                             <property name="height">1</property>
                           </packing>
@@ -361,8 +355,8 @@
                             <property name="label" translatable="yes">MOR</property>
                           </object>
                           <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">1</property>
+                            <property name="left_attach">8</property>
+                            <property name="top_attach">0</property>
                             <property name="width">1</property>
                             <property name="height">1</property>
                           </packing>
@@ -376,8 +370,8 @@
                             <property name="adjustment">adjustment5</property>
                           </object>
                           <packing>
-                            <property name="left_attach">3</property>
-                            <property name="top_attach">1</property>
+                            <property name="left_attach">9</property>
+                            <property name="top_attach">0</property>
                             <property name="width">1</property>
                             <property name="height">1</property>
                           </packing>
@@ -389,8 +383,8 @@
                             <property name="label" translatable="yes">PRE</property>
                           </object>
                           <packing>
-                            <property name="left_attach">4</property>
-                            <property name="top_attach">1</property>
+                            <property name="left_attach">10</property>
+                            <property name="top_attach">0</property>
                             <property name="width">1</property>
                             <property name="height">1</property>
                           </packing>
@@ -404,8 +398,8 @@
                             <property name="adjustment">adjustment6</property>
                           </object>
                           <packing>
-                            <property name="left_attach">5</property>
-                            <property name="top_attach">1</property>
+                            <property name="left_attach">11</property>
+                            <property name="top_attach">0</property>
                             <property name="width">1</property>
                             <property name="height">1</property>
                           </packing>
@@ -426,6 +420,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="margin_left">10</property>
+                            <property name="margin_top">10</property>
                             <property name="label" translatable="yes">50</property>
                           </object>
                           <packing>
@@ -439,6 +434,7 @@
                           <object class="GtkLabel" id="label2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="margin_top">10</property>
                             <property name="label" translatable="yes">Base Unit Cost:</property>
                           </object>
                           <packing>
@@ -548,5 +544,11 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkTreeStore" id="unitTree">
+    <columns>
+      <!-- column-name gchararray1 -->
+      <column type="gchararray"/>
+    </columns>
   </object>
 </interface>
