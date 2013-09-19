@@ -1,5 +1,7 @@
-import armyProfile;
-import unit;
+module model.basicUnit;
+
+import models.armyProfile;
+import models.unit;
 
 class basicUnit : unit {
 

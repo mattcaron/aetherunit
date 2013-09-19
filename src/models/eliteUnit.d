@@ -1,5 +1,7 @@
-import armyProfile;
-import unit;
+module models.eliteUnit;
+
+import models.armyProfile;
+import models.unit;
 
 class eliteUnit : unit {
 

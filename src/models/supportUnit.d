@@ -1,5 +1,7 @@
-import armyProfile;
-import unit;
+module models.supportUnit;
+
+import models.armyProfile;
+import models.unit;
 
 class supportUnit : unit {
     immutable int[] baseModelArray = [ 6, 6, 6, 5, 5, 4, 3, 2, 1, 1, 1];

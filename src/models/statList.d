@@ -1,3 +1,5 @@
+module models.statList;
+
 import utility.accessorTemplate;
 
 class statList {

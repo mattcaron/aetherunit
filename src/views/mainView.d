@@ -1,3 +1,5 @@
+module views.mainView;
+
 import std.stdio;
 import std.conv;
 
@@ -12,10 +14,8 @@ import gtk.Label;
 import gobject.Type;
 
 import utility.accessorTemplate;
-import utility.debugPrint;
 
-import armyProfile;
-import mainController;
+import controllers.mainController;
 
 /**
  * Constant string which is the name of our UI description file.
@@ -64,7 +64,6 @@ mixin template generateSpinButtonCallback(string variableName) {
 class mainView {
 
     mixin declarationAndProperties!("mainController", "controller");
-    mixin declarationAndProperties!("armyProfile", "profile");
 
     mixin declarationAndProperties!("Window", "w");
     mixin declarationAndProperties!("Label", "lblArmyBaseCost");

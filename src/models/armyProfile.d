@@ -1,8 +1,9 @@
+module models.armyProfile;
+
 import utility.accessorTemplate;
 import utility.debugPrint;
 
-import statList;
-
+import models.statList;
 
 mixin template statListProperties(string name)
 {

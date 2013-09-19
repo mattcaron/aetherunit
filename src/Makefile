@@ -1,4 +1,6 @@
-SOURCES := $(wildcard *.d) $(wildcard utility/*.d)
+SOURCES := $(wildcard *.d) $(wildcard utility/*.d) \
+		$(wildcard controllers/*.d) $(wildcard models/*.d) \
+		$(wildcard views/*.d)
 OBJECTS := $(SOURCES:.d=.o)
 TARGET := ../aetherunit
 RESOURCE_DIR := ../resources
@@ -21,20 +23,27 @@ all: $(TARGET)
 clean:
 	-rm $(TARGET) $(OBJECTS)
 
-mainView.o: mainView.d utility/accessorTemplate.d armyProfile.d \
-	    $(RESOURCE_DIR)/main.glade mainController.d
-errorView.o: errorView.d utility/accessorTemplate.d \
-	    $(RESOURCE_DIR)/errorView.glade
-mainController.o: mainController.d utility/accessorTemplate.d \
-		  armyProfile.d mainView.d statList.d
-armyProfile.o: utility/accessorTemplate.d statList.d
-statList.o: utility/accessorTemplate.d
-aetherVerseObject.o: aetherVerseObject.d utility/accessorTemplate.d \
-		     armyProfile.d
-unit.o: aetherVerseObject.d
-basicUnit.o: unit.d
-eliteUnit.o: unit.d
-supportUnit.o: unit.d
+views/mainView.o: $(RESOURCE_DIR)/main.glade \
+		  utility/accessorTemplate.d \
+                  controllers/mainController.d
+views/errorView.o: $(RESOURCE_DIR)/errorView.glade \
+		   utility/accessorTemplate.d 
+controllers/mainController.o: utility/accessorTemplate.d \
+		              views/mainView.d \
+			      views/errorView.d \
+			      models/armyProfile.d \
+	                      models/basicUnit.d \
+		  	      models/supportUnit.d \
+		              models/eliteUnit.d
+models/armyProfile.o: utility/accessorTemplate.d \
+                      models/statList.d
+models/statList.o: utility/accessorTemplate.d
+models/aetherVerseObject.o: utility/accessorTemplate.d \
+		            models/armyProfile.d
+models/unit.o: models/aetherVerseObject.d
+models/basicUnit.o: models/unit.d
+models/eliteUnit.o: models/unit.d
+models/supportUnit.o: models/unit.d
 
 # IMPORTANT: Flags need to come AFTER target and sources for gdc 4.6
 %.o: %.d

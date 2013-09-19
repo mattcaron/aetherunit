@@ -1,3 +1,5 @@
+module views.errorView;
+
 import std.stdio;
 
 import gtk.Builder;

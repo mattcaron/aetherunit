@@ -1,7 +1,10 @@
+module models.unit;
+
 import utility.accessorTemplate;
 
-import aetherVerseObject;
-import statList;
+import models.aetherVerseObject;
+import models.statList;
+import models.armyProfile;
 
 abstract class unit : aetherVerseObject {
 

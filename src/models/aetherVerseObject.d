@@ -1,6 +1,8 @@
+module models.aetherVerseObject;
+
 import utility.accessorTemplate;
 
-import armyProfile;
+import models.armyProfile;
 
 abstract class aetherVerseObject {
 

@@ -1,6 +1,6 @@
 import std.stdio;
 
-import mainController;
+import controllers.mainController;
 import utility.debugPrint;
 
 /**

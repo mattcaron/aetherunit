@@ -1,3 +1,5 @@
+module controllers.mainController;
+
 import std.stdio;
 
 import gtk.Main;
@@ -5,13 +7,13 @@ import gtk.Main;
 import utility.accessorTemplate;
 import utility.debugPrint;
 
-import mainView;
-import errorView;
+import views.mainView;
+import views.errorView;
 
-import armyProfile;
-import basicUnit;
-import supportUnit;
-import eliteUnit;
+import models.armyProfile;
+import models.basicUnit;
+import models.supportUnit;
+import models.eliteUnit;
 
 /**
  * Template to generate a model update function
