@@ -25,31 +25,40 @@ all: $(TARGET)
 clean:
 	-rm $(TARGET) $(OBJECTS)
 
+# Model dependencies
+models/aetherVerseObject.o: utility/accessorTemplate.d \
+		            models/armyProfile.d
+models/armyProfile.o: utility/accessorTemplate.d \
+                      models/statList.d
+models/basicUnit.o: models/armyProfile.d \
+                    models/unit.d
+models/eliteUnit.o:  models/armyProfile.d \
+                     models/unit.d
+models/masterList.o: utility/accessorTemplate.d \
+                     models/basicUnit.d \
+                     models/supportUnit.d \
+		     models/eliteUnit.d
+models/statList.o: utility/accessorTemplate.d
+models/supportUnit.o: models/armyProfile.d \
+		      models/unit.d
+models/unit.o: utility/accessorTemplate.d \
+               models/aetherVerseObject.d \
+	       models/armyProfile.d \
+               models/statList.d 
+
+# View dependencies
 views/mainView.o: $(RESOURCE_DIR)/main.glade \
 		  utility/accessorTemplate.d \
                   controllers/mainController.d
 views/errorView.o: $(RESOURCE_DIR)/errorView.glade \
 		   utility/accessorTemplate.d 
+
+# Controller dependencies
 controllers/mainController.o: utility/accessorTemplate.d \
 		              views/mainView.d \
 			      views/errorView.d \
 			      models/armyProfile.d \
-	                      models/basicUnit.d \
-		  	      models/supportUnit.d \
-		              models/eliteUnit.d
-models/armyProfile.o: utility/accessorTemplate.d \
-                      models/statList.d
-models/statList.o: utility/accessorTemplate.d
-models/aetherVerseObject.o: utility/accessorTemplate.d \
-		            models/armyProfile.d
-models/unit.o: models/aetherVerseObject.d
-models/basicUnit.o: models/unit.d
-models/eliteUnit.o: models/unit.d
-models/supportUnit.o: models/unit.d
-models/masterList.o: utility/accessorTemplate.d \
-                     models/basicUnit.d \
-                     models/supportUnit.d \
-		     models/eliteUnit.d
+			      models/masterList.d
 
 # IMPORTANT: Flags need to come AFTER target and sources for gdc 4.6
 %.o: %.d

@@ -5,7 +5,6 @@ import std.stdio;
 import gtk.Main;
 
 import utility.accessorTemplate;
-import utility.debugPrint;
 
 import views.mainView;
 import views.errorView;
@@ -65,6 +64,7 @@ class mainController {
      */
     this() {
         profile = new armyProfile();
+        list = new masterList();
     }
 
     /**

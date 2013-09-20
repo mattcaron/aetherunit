@@ -1,7 +1,6 @@
 module models.armyProfile;
 
 import utility.accessorTemplate;
-import utility.debugPrint;
 
 import models.statList;
 
