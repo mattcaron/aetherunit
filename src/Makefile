@@ -46,6 +46,10 @@ models/unit.o: models/aetherVerseObject.d
 models/basicUnit.o: models/unit.d
 models/eliteUnit.o: models/unit.d
 models/supportUnit.o: models/unit.d
+models/masterList.o: utility/accessorTemplate.d \
+                     models/basicUnit.d \
+                     models/supportUnit.d \
+		     models/eliteUnit.d
 
 # IMPORTANT: Flags need to come AFTER target and sources for gdc 4.6
 %.o: %.d

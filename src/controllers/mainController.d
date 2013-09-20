@@ -11,9 +11,7 @@ import views.mainView;
 import views.errorView;
 
 import models.armyProfile;
-import models.basicUnit;
-import models.supportUnit;
-import models.eliteUnit;
+import models.masterList;
 
 /**
  * Template to generate a model update function
@@ -52,13 +50,7 @@ class mainController {
 
     /***************** Models ****************/
     mixin declarationAndProperties!("armyProfile", "profile");
-    // TODO: more specific subtypes here? (Personalities, melee
-    // weapons, vehicles, etc?
-    mixin declarationAndProperties!("basicUnit[]", "basicUnits");
-    mixin declarationAndProperties!("eliteUnit[]", "eliteUnits");
-    mixin declarationAndProperties!("supportUnit[]", "supportUnits");
-    // mixin declarationAndProperties!("armor[]", "armors");
-    // mixin declarationAndProperties!("weapon[]", "weapons");
+    mixin declarationAndProperties!("masterList", "list");
 
     /***************** Callbacks *************/
     mixin generateModelUpdate!("DEX");
