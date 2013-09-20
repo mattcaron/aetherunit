@@ -15,7 +15,9 @@ WIDGET_LIB_FLAGS := -I$(GTKD_DIR)/src \
 
 RESOURCE_FLAGS := -J$(RESOURCE_DIR)
 
-DFLAGS := -O2 -Wall -Werror -fdebug=1 \
+DEBUG_FLAGS := -ggdb -fdebug=1
+
+DFLAGS := -O2 -Wall -Werror $(DEBUG_FLAGS) \
           $(WIDGET_LIB_FLAGS) $(RESOURCE_FLAGS) 
 
 all: $(TARGET)
