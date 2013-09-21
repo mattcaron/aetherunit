@@ -45,18 +45,52 @@ mixin template generateModelUpdate(string variableName) {
 class mainController {
 
     /***************** Views *****************/
+
+    /**
+     * Main view object
+     */
     mixin declarationAndProperties!("mainView", "view");
 
     /***************** Models ****************/
+    /**
+     * The overall army profile
+     */
     mixin declarationAndProperties!("armyProfile", "profile");
+    
+    /**
+     * List of items, units, etc.
+     */
     mixin declarationAndProperties!("masterList", "list");
 
     /***************** Callbacks *************/
+    /**
+     * Function to update the model's DEX
+     */
     mixin generateModelUpdate!("DEX");
+
+    /**
+     * Function to update the model's STR
+     */
     mixin generateModelUpdate!("STR");
+
+    /**
+     * Function to update the models' CON
+     */
     mixin generateModelUpdate!("CON");
+
+    /**
+     * Function to update the models' TEK
+     */
     mixin generateModelUpdate!("TEK");
+
+    /**
+     * Function to update the models' MOR
+     */
     mixin generateModelUpdate!("MOR");
+
+    /**
+     * Function to update the models' PRE
+     */
     mixin generateModelUpdate!("PRE");
 
     /**

@@ -22,6 +22,9 @@ immutable string ERROR_WINDOW_RESOURCE = "errorView.glade";
  */
 immutable string ERROR_WINDOW_NAME = "errorDialog";
 
+/**
+ * Class to control the error view
+ */
 class errorView {
 
     /**

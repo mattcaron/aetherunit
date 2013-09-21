@@ -61,18 +61,57 @@ mixin template generateSpinButtonCallback(string variableName) {
     );
 }
 
+/**
+ * Class to control the main view
+ */
 class mainView {
 
+    /**
+     * Reference to the main controller
+     *
+     * This is used to inform the controller of updates
+     */
     mixin declarationAndProperties!("mainController", "controller");
 
+    /**
+     * Reference to the window we're controlling
+     */
     mixin declarationAndProperties!("Window", "w");
+
+    /** 
+     * Reference to the label in the window which we want to update
+     * with the calculated army cost.
+     */
     mixin declarationAndProperties!("Label", "lblArmyBaseCost");
 
+    /**
+     * Callback passed to GTK to handle updates to the DEX spin button
+     */
     mixin generateSpinButtonCallback!("DEX");
+
+    /**
+     * Callback passed to GTK to handle updates to the STR spin button
+     */
     mixin generateSpinButtonCallback!("STR");
+
+    /**
+     * Callback passed to GTK to handle updates to the CON spin button
+     */
     mixin generateSpinButtonCallback!("CON");
+
+    /**
+     * Callback passed to GTK to handle updates to the TEK spin button
+     */
     mixin generateSpinButtonCallback!("TEK");
+
+    /**
+     * Callback passed to GTK to handle updates to the MOR spin button
+     */
     mixin generateSpinButtonCallback!("MOR");
+
+    /**
+     * Callback passed to GTK to handle updates to the PRE spin button
+     */
     mixin generateSpinButtonCallback!("PRE");
 
     /**
