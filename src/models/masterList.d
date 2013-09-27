@@ -6,6 +6,8 @@ import models.basicUnit;
 import models.supportUnit;
 import models.eliteUnit;
 import models.armor;
+import models.rangedWeapon;
+import models.meleeWeapon;
 
 /**
  * A "master" list class consisting of a bunch of arrays of all the
@@ -28,11 +30,20 @@ class masterList {
      */
     mixin declarationAndProperties!("supportUnit[]", "supportUnits");
 
-    // mixin declarationAndProperties!("weapon[]", "weapons");
     /**
      * List of armors
      */
     mixin declarationAndProperties!("armor[]", "armors");
+    
+    /**
+     * List of ranged weapons
+     */
+    mixin declarationAndProperties!("rangedWeapon[]", "rangedWeapons");
+
+    /**
+     * List of melee weapons
+     */
+    mixin declarationAndProperties!("meleeWeapon[]", "meleeWeapons");
 
     /**
      * Default constructor

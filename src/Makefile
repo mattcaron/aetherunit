@@ -32,6 +32,11 @@ models/armor.o: utility/accessorTemplate.d \
                 models/aetherVerseObject.d
 models/armyProfile.o: utility/accessorTemplate.d \
                       models/statList.d
+models/assaultWeapon.o \
+models/heavyWeapon.o \
+models/lightWeapon.o: utility/accessorTemplate.d \
+		      models/armyProfile.d \
+		      models/rangedWeapon.d
 models/basicUnit.o: models/armyProfile.d \
                     models/unit.d
 models/eliteUnit.o:  models/armyProfile.d \
@@ -40,6 +45,10 @@ models/masterList.o: utility/accessorTemplate.d \
                      models/basicUnit.d \
                      models/supportUnit.d \
 		     models/eliteUnit.d
+models/rangedWeapon.o \
+models/meleeWeapon.o: utility/accessorTemplate.d \
+                       models/aetherVerseObject.d \
+		       models/armyProfile.d
 models/statList.o: utility/accessorTemplate.d
 models/supportUnit.o: models/armyProfile.d \
 		      models/unit.d
