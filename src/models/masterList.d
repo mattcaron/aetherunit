@@ -5,6 +5,7 @@ import utility.accessorTemplate;
 import models.basicUnit;
 import models.supportUnit;
 import models.eliteUnit;
+import models.armor;
 
 /**
  * A "master" list class consisting of a bunch of arrays of all the
@@ -27,10 +28,11 @@ class masterList {
      */
     mixin declarationAndProperties!("supportUnit[]", "supportUnits");
 
-    // TODO: more specific subtypes here? (Personalities, melee
-    // weapons, vehicles, etc?
-    // mixin declarationAndProperties!("armor[]", "armors");
     // mixin declarationAndProperties!("weapon[]", "weapons");
+    /**
+     * List of armors
+     */
+    mixin declarationAndProperties!("armor[]", "armors");
 
     /**
      * Default constructor

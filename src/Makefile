@@ -28,6 +28,8 @@ clean:
 # Model dependencies
 models/aetherVerseObject.o: utility/accessorTemplate.d \
 		            models/armyProfile.d
+models/armor.o: utility/accessorTemplate.d \
+                models/aetherVerseObject.d
 models/armyProfile.o: utility/accessorTemplate.d \
                       models/statList.d
 models/basicUnit.o: models/armyProfile.d \
