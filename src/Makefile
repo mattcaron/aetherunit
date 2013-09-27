@@ -45,6 +45,9 @@ models/unit.o: utility/accessorTemplate.d \
                models/aetherVerseObject.d \
 	       models/armyProfile.d \
                models/statList.d 
+models/vehicle.o: models/armyProfile.d \
+                  models/supportUnit.d
+
 
 # View dependencies
 views/mainView.o: $(RESOURCE_DIR)/main.glade \
