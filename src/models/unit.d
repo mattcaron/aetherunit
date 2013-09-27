@@ -49,7 +49,7 @@ abstract class unit : aetherVerseObject {
     /**
      * Type of the unit
      */
-    unitType type;
+    mixin declarationAndProperties!("unitType", "type");
 
     /**
      * Initializing constructor
