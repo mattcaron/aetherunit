@@ -36,7 +36,7 @@ class errorView {
     /**
      * Popup the dialog window
      *
-     * @return message message to display
+     * @param message message to display
      *
      * @return true on success
      * @return false on failure
