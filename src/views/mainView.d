@@ -24,7 +24,7 @@ import models.masterList;
 /**
  * Constant string which is the name of our UI description file.
  */
-immutable string MAIN_WINDOW_RESOURCE = "main.glade";
+immutable string MAIN_WINDOW_RESOURCE = "mainView.glade";
 
 /**
  * Constant string which is the name of our parent window

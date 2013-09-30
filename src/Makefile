@@ -60,7 +60,7 @@ models/vehicle.o: models/armyProfile.d \
 
 
 # View dependencies
-views/mainView.o: $(RESOURCE_DIR)/main.glade \
+views/mainView.o: $(RESOURCE_DIR)/mainView.glade \
 		  utility/accessorTemplate.d \
                   controllers/mainController.d \
                   models/masterList.d
