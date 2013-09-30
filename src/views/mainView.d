@@ -10,12 +10,16 @@ import gtk.Widget;
 import gtk.Window;
 import gtk.SpinButton;
 import gtk.Label;
+import gtk.TreeStore;
+import gtk.TreeIter;
 
 import gobject.Type;
 
 import utility.accessorTemplate;
 
 import controllers.mainController;
+
+import models.masterList;
 
 /**
  * Constant string which is the name of our UI description file.
@@ -72,6 +76,11 @@ class mainView {
      * This is used to inform the controller of updates
      */
     mixin declarationAndProperties!("mainController", "controller");
+
+    /**
+     * Reference to the builder object which contains all our bits
+     */
+    mixin declarationAndProperties!("Builder", "g");
 
     /**
      * Reference to the window we're controlling
@@ -142,7 +151,7 @@ class mainView {
 
         Main.init(args);
 
-        Builder g = new Builder();
+        g = new Builder();
         
         if (!g.addFromString(gladestring, gladestring.length)) {
             writefln("Couldn't find glade file: %s", MAIN_WINDOW_RESOURCE);
@@ -192,5 +201,43 @@ class mainView {
     void run() {
         w.showAll();
         Main.run();
+    }
+
+    /**
+     * Populate the army TreeStore from the master list
+     *
+     * @param list the master list
+     */
+    void tsArmyPopulate(masterList list) {
+        TreeStore tsArmy = cast(TreeStore)g.getObject("tsArmy");
+        if (tsArmy is null) {
+            writefln("Unable to get tree store tsArmy");
+        }
+        else {
+            // Iterators used to keep track of column "headers" - top
+            // level expandoflyout doodads
+            TreeIter iterBasicUnits;
+            TreeIter iterEliteUnits;
+            TreeIter iterSupportUnits;
+            TreeIter iterArmors;
+            TreeIter iterRangedWeapons;
+            TreeIter iterMeleeWeapons;
+
+            // Add the top level headers
+            iterBasicUnits = tsArmy.append(null);
+            tsArmy.setValue(iterBasicUnits, 0, "Basic Units");
+            iterEliteUnits = tsArmy.append(null);
+            tsArmy.setValue(iterEliteUnits, 0, "Elite Units");
+            iterBasicUnits = tsArmy.append(null);
+            tsArmy.setValue(iterBasicUnits, 0, "Support Units");
+            iterArmors = tsArmy.append(null);
+            tsArmy.setValue(iterArmors, 0, "Armors");
+            iterRangedWeapons = tsArmy.append(null);
+            tsArmy.setValue(iterRangedWeapons, 0, "Ranged Weapons");
+            iterMeleeWeapons = tsArmy.append(null);
+            tsArmy.setValue(iterMeleeWeapons, 0, "Melee Weapons");
+
+            
+        }
     }
 }

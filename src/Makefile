@@ -62,7 +62,8 @@ models/vehicle.o: models/armyProfile.d \
 # View dependencies
 views/mainView.o: $(RESOURCE_DIR)/main.glade \
 		  utility/accessorTemplate.d \
-                  controllers/mainController.d
+                  controllers/mainController.d \
+                  models/masterList.d
 views/errorView.o: $(RESOURCE_DIR)/errorView.glade \
 		   utility/accessorTemplate.d 
 

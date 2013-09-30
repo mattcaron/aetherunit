@@ -114,6 +114,7 @@ class mainController {
         view = new mainView(this);
 
         if (view.init(args)) {
+            view.tsArmyPopulate(list);
             view.run();
         }
         return retVal;
