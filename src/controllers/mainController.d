@@ -8,6 +8,7 @@ import utility.accessorTemplate;
 
 import views.mainView;
 import views.errorView;
+import views.armorView;
 
 import models.armyProfile;
 import models.masterList;
@@ -115,6 +116,13 @@ class mainController {
 
         if (view.init(args)) {
             view.tsArmyPopulate(list);
+            
+            // ==== TESTING ====
+            armorView armor = new armorView();
+            armor.build();
+            view.replaceSidePane(armor.w);
+            // ==== END TESTING ====
+
             view.run();
         }
         return retVal;

@@ -12,10 +12,18 @@ import gtk.SpinButton;
 import gtk.Label;
 import gtk.TreeStore;
 import gtk.TreeIter;
+import gtk.Alignment;
+
+// These are necessary for the implicit conversion functions needed to
+// be able to convert them to type "Widget" so they can be dynamically
+// added to containers (ie currentSidePaneView). If you remove them,
+// it will cease to functiom. It needs 
+import gtk.Grid;
 
 import gobject.Type;
 
 import utility.accessorTemplate;
+import utility.debugPrint;
 
 import controllers.mainController;
 
@@ -87,6 +95,11 @@ class mainView {
      */
     mixin declarationAndProperties!("Window", "w");
 
+    /**
+     * Reference to the current side pane
+     */
+    mixin declarationAndProperties!("Widget", "currentSidePaneView");
+
     /** 
      * Reference to the label in the window which we want to update
      * with the calculated army cost.
@@ -131,6 +144,7 @@ class mainView {
      */
     this(mainController controller) {
         this.controller = controller;
+        currentSidePaneView = null;
     }
 
     /**
@@ -236,8 +250,35 @@ class mainView {
             tsArmy.setValue(iterRangedWeapons, 0, "Ranged Weapons");
             iterMeleeWeapons = tsArmy.append(null);
             tsArmy.setValue(iterMeleeWeapons, 0, "Melee Weapons");
+        }
+    }
 
-            
+    /**
+     * Replace the current side pane with the the given one
+     *
+     * @param newView view to add in
+     *
+     */
+    void replaceSidePane(Widget newView) {
+        if (currentSidePaneView is null) {
+            // we're replacing the default "replace me" one
+            currentSidePaneView = cast(Widget)g.getObject("gridReplaceMe");
+        }
+
+        if (currentSidePaneView is null) {
+            writefln("currentSidePaneView is null (and shouldn't be)");
+        }
+        else {
+            Alignment alignmentSidePane = cast(Alignment)g.getObject(
+                "alignmentSidePane");
+            if (alignmentSidePane is null) {
+                writefln("Unable to get alignment alignmentSidePane");
+            }
+            else {
+                alignmentSidePane.remove(currentSidePaneView);
+                currentSidePaneView = newView;
+                alignmentSidePane.add(currentSidePaneView);
+            }
         }
     }
 }
