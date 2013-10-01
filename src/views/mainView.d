@@ -13,11 +13,15 @@ import gtk.Label;
 import gtk.TreeStore;
 import gtk.TreeIter;
 import gtk.Alignment;
+import gtk.TreeView;
+import gtk.TreeSelection;
+import gdk.Event;
 
 // These are necessary for the implicit conversion functions needed to
 // be able to convert them to type "Widget" so they can be dynamically
 // added to containers (ie currentSidePaneView). If you remove them,
-// it will cease to functiom. It needs 
+// it will cease to function. It needs the top level widget for each
+// view added in to alignmentSidePane
 import gtk.Grid;
 
 import gobject.Type;
@@ -179,9 +183,16 @@ class mainView {
                 retVal = false;
             }
             else {
-                w.addOnHide(
-                    delegate void(Widget aux) { 
+                w.addOnDelete(
+                    delegate bool (Event event, Widget aux) { 
                         Main.quit(); 
+                        // We return true here because this is the
+                        // last handler - quit and we're
+                        // done. Propagating to other handlers results
+                        // in attempts to call hooks where thinks have
+                        // already been freed, resulting in segfaults
+                        // due to access of nonexistent resources.
+                        return true;
                     } 
                 );
             }
@@ -250,6 +261,23 @@ class mainView {
             tsArmy.setValue(iterRangedWeapons, 0, "Ranged Weapons");
             iterMeleeWeapons = tsArmy.append(null);
             tsArmy.setValue(iterMeleeWeapons, 0, "Melee Weapons");
+
+            TreeView tvArmy = cast(TreeView)g.getObject("tvArmy");
+            if (tvArmy is null) {
+                writefln("Unable to get tree view tvArmy");
+            }
+            else {
+                tvArmy.addOnCursorChanged(
+                    delegate void (TreeView treeView) {
+                        TreeIter selection = treeView.getSelectedIter();
+                        // TODO - call into the controller to replace
+                        // the side pane
+                    }
+                );
+                // Set it to a single selection "browse" mode
+                TreeSelection selection = tvArmy.getSelection();
+                selection.setMode(GtkSelectionMode.BROWSE);
+            }
         }
     }
 
