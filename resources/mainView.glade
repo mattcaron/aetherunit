@@ -514,7 +514,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <child>
-                      <object class="GtkTreeView" id="unitTreeView">
+                      <object class="GtkTreeView" id="tvArmy">
                         <property name="width_request">100</property>
                         <property name="height_request">500</property>
                         <property name="visible">True</property>
