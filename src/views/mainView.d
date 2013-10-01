@@ -3,18 +3,19 @@ module views.mainView;
 import std.stdio;
 import std.conv;
 
+import gtk.Alignment;
 import gtk.Builder;
 import gtk.Button;
+import gtk.Label;
 import gtk.Main;
+import gtk.SpinButton;
+import gtk.TreeIter;
+import gtk.TreeSelection;
+import gtk.TreeStore;
+import gtk.TreeView;
 import gtk.Widget;
 import gtk.Window;
-import gtk.SpinButton;
-import gtk.Label;
-import gtk.TreeStore;
-import gtk.TreeIter;
-import gtk.Alignment;
-import gtk.TreeView;
-import gtk.TreeSelection;
+
 import gdk.Event;
 
 // These are necessary for the implicit conversion functions needed to

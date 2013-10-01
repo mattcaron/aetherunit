@@ -4,9 +4,9 @@ import std.stdio;
 
 import gtk.Builder;
 import gtk.Button;
-import gtk.Widget;
-import gtk.MessageDialog;
 import gtk.Label;
+import gtk.MessageDialog;
+import gtk.Widget;
 
 import gobject.Type;
 

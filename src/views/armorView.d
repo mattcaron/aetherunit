@@ -4,8 +4,8 @@ import std.stdio;
 
 import gtk.Builder;
 import gtk.Button;
-import gtk.Widget;
 import gtk.Label;
+import gtk.Widget;
 
 import gobject.Type;
 

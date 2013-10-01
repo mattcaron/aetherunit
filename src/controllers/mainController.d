@@ -2,8 +2,6 @@ module controllers.mainController;
 
 import std.stdio;
 
-import gtk.Main;
-
 import utility.accessorTemplate;
 
 import views.mainView;
