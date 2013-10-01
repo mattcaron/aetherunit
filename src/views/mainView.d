@@ -208,6 +208,26 @@ class mainView {
             mixin(hookSpinButton!("sbArmyTEK"));
             mixin(hookSpinButton!("sbArmyMOR"));
             mixin(hookSpinButton!("sbArmyPRE"));
+
+            // Initial list population
+            tsArmyPopulate();
+
+            TreeView tvArmy = cast(TreeView)g.getObject("tvArmy");
+            if (tvArmy is null) {
+                writefln("Unable to get tree view tvArmy");
+            }
+            else {
+                tvArmy.addOnCursorChanged(
+                    delegate void (TreeView treeView) {
+                        TreeIter selection = treeView.getSelectedIter();
+                        // TODO - call into the controller to replace
+                        // the side pane
+                    }
+                );
+                // Set it to a single selection "browse" mode
+                TreeSelection selection = tvArmy.getSelection();
+                selection.setMode(GtkSelectionMode.BROWSE);
+            }
         }
         return retVal;
     }
@@ -232,14 +252,20 @@ class mainView {
     /**
      * Populate the army TreeStore from the master list
      *
-     * @param list the master list
+     * @param list the master list or null if you just want to
+     *             populate the list "headers".
      */
-    void tsArmyPopulate(masterList list) {
+    void tsArmyPopulate(masterList list=null) {
         TreeStore tsArmy = cast(TreeStore)g.getObject("tsArmy");
         if (tsArmy is null) {
             writefln("Unable to get tree store tsArmy");
         }
         else {
+            // Destroy the store first
+            tsArmy.clear();
+
+            // Then rebuild
+
             // Iterators used to keep track of column "headers" - top
             // level expandoflyout doodads
             TreeIter iterBasicUnits;
@@ -263,21 +289,8 @@ class mainView {
             iterMeleeWeapons = tsArmy.append(null);
             tsArmy.setValue(iterMeleeWeapons, 0, "Melee Weapons");
 
-            TreeView tvArmy = cast(TreeView)g.getObject("tvArmy");
-            if (tvArmy is null) {
-                writefln("Unable to get tree view tvArmy");
-            }
-            else {
-                tvArmy.addOnCursorChanged(
-                    delegate void (TreeView treeView) {
-                        TreeIter selection = treeView.getSelectedIter();
-                        // TODO - call into the controller to replace
-                        // the side pane
-                    }
-                );
-                // Set it to a single selection "browse" mode
-                TreeSelection selection = tvArmy.getSelection();
-                selection.setMode(GtkSelectionMode.BROWSE);
+            if (list !is null) {
+                writefln("TODO populate things\n");
             }
         }
     }
