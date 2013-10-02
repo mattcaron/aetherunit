@@ -10,9 +10,11 @@ import gtk.Label;
 import gtk.Main;
 import gtk.SpinButton;
 import gtk.TreeIter;
+import gtk.TreePath;
 import gtk.TreeSelection;
 import gtk.TreeStore;
 import gtk.TreeView;
+import gtk.TreeViewColumn;
 import gtk.Widget;
 import gtk.Window;
 
@@ -219,15 +221,37 @@ class mainView {
             else {
                 tvArmy.addOnCursorChanged(
                     delegate void (TreeView treeView) {
-                        TreeIter selection = treeView.getSelectedIter();
-                        // TODO - call into the controller to replace
-                        // the side pane
+                        controller.tvArmyUpdated();
                     }
                 );
                 // Set it to a single selection "browse" mode
                 TreeSelection selection = tvArmy.getSelection();
                 selection.setMode(GtkSelectionMode.BROWSE);
             }
+        }
+        return retVal;
+    }
+
+    /**
+     * Get the current selection for tvArmy
+     *
+     * @return the selection as a path string - a series of integer
+     *         indices (0 based) separated by commas. So, 2,4 is the
+     *         fifth child of the third node
+     * @return null if error or nothing selected
+     */
+    string tvArmyGetSelection() {
+        string retVal = null;
+
+        TreeView tvArmy = cast(TreeView)g.getObject("tvArmy");
+        if (tvArmy is null) {
+            writefln("Unable to get tree view tvArmy");
+        }
+        else {
+            TreePath path = new TreePath();
+            TreeViewColumn column = new TreeViewColumn();
+            tvArmy.getCursor(path, column);
+            retVal = path.toString();
         }
         return retVal;
     }

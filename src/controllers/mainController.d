@@ -93,6 +93,15 @@ class mainController {
     mixin generateModelUpdate!("PRE");
 
     /**
+     * Function to update things when the Army TreeView selection
+     * changes
+     */
+    void tvArmyUpdated() {
+        // TODO - replace the side pane
+        writefln("Path is %s", view.tvArmyGetSelection());
+    }
+
+    /**
      * Default constructor
      */
     this() {
@@ -113,14 +122,6 @@ class mainController {
         view = new mainView(this);
 
         if (view.init(args)) {
-            view.tsArmyPopulate(list);
-            
-            // ==== TESTING ====
-            armorView armor = new armorView();
-            armor.build();
-            view.replaceSidePane(armor.w);
-            // ==== END TESTING ====
-
             view.run();
         }
         return retVal;
