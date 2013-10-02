@@ -73,22 +73,22 @@ class mainController {
     mixin generateModelUpdate!("STR");
 
     /**
-     * Function to update the models' CON
+     * Function to update the model's CON
      */
     mixin generateModelUpdate!("CON");
 
     /**
-     * Function to update the models' TEK
+     * Function to update the model's TEK
      */
     mixin generateModelUpdate!("TEK");
 
     /**
-     * Function to update the models' MOR
+     * Function to update the model's MOR
      */
     mixin generateModelUpdate!("MOR");
 
     /**
-     * Function to update the models' PRE
+     * Function to update the model's PRE
      */
     mixin generateModelUpdate!("PRE");
 
