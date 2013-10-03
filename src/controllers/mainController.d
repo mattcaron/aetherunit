@@ -26,7 +26,7 @@ mixin template generateModelUpdate(string variableName) {
                 view.armyBaseCostUpdate(profile.recalculate());
             } else {
                 errorView error = new errorView();
-                error.popup(\""~variableName~"\" ~
+                error.popup(\""~variableName~" \" ~
                             \"is out of range. This is not your fault,\n\" ~
                             \"the UI should never have let you get here.\n\" ~
                             \"Please contact the software authors and \n\" ~
