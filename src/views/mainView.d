@@ -4,7 +4,6 @@ import std.stdio;
 import std.conv;
 
 import gtk.Alignment;
-import gtk.Builder;
 import gtk.Button;
 import gtk.Label;
 import gtk.Main;
@@ -16,7 +15,6 @@ import gtk.TreeStore;
 import gtk.TreeView;
 import gtk.TreeViewColumn;
 import gtk.Widget;
-import gtk.Window;
 
 import gdk.Event;
 
@@ -36,15 +34,17 @@ import controllers.mainController;
 
 import models.masterList;
 
+import views.genericView;
+
 /**
  * Constant string which is the name of our UI description file.
  */
-immutable string MAIN_WINDOW_RESOURCE = "mainView.glade";
+immutable string WIDGET_RESOURCE = "mainView.glade";
 
 /**
  * Constant string which is the name of our parent window
  */
-immutable string MAIN_WINDOW_NAME = "mainWindow";
+immutable string WIDGET_NAME = "mainWindow";
 
 /**
  * Template to emit code to hook a spin button to a callback function
@@ -83,7 +83,7 @@ mixin template generateSpinButtonCallback(string variableName) {
 /**
  * Class to control the main view
  */
-class mainView {
+class mainView : genericView {
 
     /**
      * Reference to the main controller
@@ -91,16 +91,6 @@ class mainView {
      * This is used to inform the controller of updates
      */
     mixin declarationAndProperties!("mainController", "controller");
-
-    /**
-     * Reference to the builder object which contains all our bits
-     */
-    mixin declarationAndProperties!("Builder", "g");
-
-    /**
-     * Reference to the window we're controlling
-     */
-    mixin declarationAndProperties!("Window", "w");
 
     /**
      * Reference to the current side pane
@@ -167,38 +157,28 @@ class mainView {
     bool init(string[] args) {
         // IMPORTANT: Main.init needs to be called before Builder is
         // created.
-        string gladestring = import(MAIN_WINDOW_RESOURCE);
         bool retVal = true;
+        string gladeString = import(WIDGET_RESOURCE);
 
         Main.init(args);
 
-        g = new Builder();
-        
-        if (!g.addFromString(gladestring, gladestring.length)) {
-            writefln("Couldn't find glade file: %s", MAIN_WINDOW_RESOURCE);
+        if (!super.init(gladeString, WIDGET_RESOURCE, WIDGET_NAME)) {
             retVal = false;
-        } 
+        }
         else {
-            w = cast(Window)g.getObject(MAIN_WINDOW_NAME);
-            
-            if (w is null) {
-                writefln("Unable to get handle to main window");
-                retVal = false;
-            }
-            else {
-                w.addOnDelete(
-                    delegate bool (Event event, Widget aux) { 
-                        Main.quit(); 
-                        // We return true here because this is the
-                        // last handler - quit and we're
-                        // done. Propagating to other handlers results
-                        // in attempts to call hooks where thinks have
-                        // already been freed, resulting in segfaults
-                        // due to access of nonexistent resources.
-                        return true;
-                    } 
-                );
-            }
+            w.addOnDelete(
+                delegate bool (Event event, Widget aux) { 
+                    Main.quit(); 
+                    // We return true here because this is the
+                    // last handler - quit and we're
+                    // done. Propagating to other handlers results
+                    // in attempts to call hooks where thinks have
+                    // already been freed, resulting in segfaults
+                    // due to access of nonexistent resources.
+                    return true;
+                } 
+            );
+
             lblArmyBaseCost = cast(Label)g.getObject("lblArmyBaseCost");
             if (lblArmyBaseCost is null) {
                 writefln("Unable to get label lblArmyBaseCost");

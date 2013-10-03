@@ -2,30 +2,30 @@ module views.errorView;
 
 import std.stdio;
 
-import gtk.Builder;
 import gtk.Button;
 import gtk.Label;
 import gtk.MessageDialog;
-import gtk.Widget;
 
 import gobject.Type;
 
 import utility.accessorTemplate;
 
+import views.genericView;
+
 /**
  * Constant string which is the name of our UI description file.
  */
-immutable string ERROR_WINDOW_RESOURCE = "errorView.glade";
+immutable string WIDGET_RESOURCE = "errorView.glade";
 
 /**
  * Constant string which is the name of our parent window
  */
-immutable string ERROR_WINDOW_NAME = "errorDialog";
+immutable string WIDGET_NAME = "errorDialog";
 
 /**
  * Class to control the error view
  */
-class errorView {
+class errorView : genericView {
 
     /**
      * Initializing constructor
@@ -44,30 +44,18 @@ class errorView {
     bool popup(string message) {
         // IMPORTANT: Main.init needs to be called before Builder is
         // created.
-        string gladestring = import(ERROR_WINDOW_RESOURCE);
+        string gladeString = import(WIDGET_RESOURCE);
         bool retVal = true;
 
-        Builder g = new Builder();
-
-        if (!g.addFromString(gladestring, gladestring.length)) {
-            writefln("Couldn't find glade file: %s", ERROR_WINDOW_RESOURCE);
+        if (!super.init(gladeString, WIDGET_RESOURCE, WIDGET_NAME)) {
             retVal = false;
-        } 
+        }
         else {
-            MessageDialog w = cast(MessageDialog)g.getObject(ERROR_WINDOW_NAME);
-            
-            if (w is null) {
-                writefln("Unable to get handle to error window %s", 
-                         ERROR_WINDOW_NAME);
-                retVal = false;
-            }
-            else {
-                w.addOnHide(
-                    delegate void(Widget aux) { 
-                        w.destroy(); 
-                    } 
-                );
-            }
+            w.addOnHide(
+                delegate void(Widget aux) { 
+                    w.destroy(); 
+                } 
+            );
 
             Label lblError = cast(Label)g.getObject("lblError");
             if (lblError is null) {
