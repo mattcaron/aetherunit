@@ -53,7 +53,8 @@ immutable string WIDGET_NAME = "mainWindow";
  */
 template hookSpinButton(string buttonName) {
         const char[] hookSpinButton = "
-    SpinButton "~buttonName~" = cast(SpinButton)g.getObject(\""~buttonName~"\");
+    SpinButton "~buttonName~" = cast(SpinButton)builder.getObject(
+                                     \""~buttonName~"\");
     if("~buttonName~" is null) {
         writefln(\"Unable to get button: "~buttonName~"\");
         retVal = 1;
@@ -166,7 +167,7 @@ class mainView : genericView {
             retVal = false;
         }
         else {
-            w.addOnDelete(
+            widget.addOnDelete(
                 delegate bool (Event event, Widget aux) { 
                     Main.quit(); 
                     // We return true here because this is the
@@ -179,7 +180,7 @@ class mainView : genericView {
                 } 
             );
 
-            lblArmyBaseCost = cast(Label)g.getObject("lblArmyBaseCost");
+            lblArmyBaseCost = cast(Label)builder.getObject("lblArmyBaseCost");
             if (lblArmyBaseCost is null) {
                 writefln("Unable to get label lblArmyBaseCost");
                 retVal = false;
@@ -194,7 +195,7 @@ class mainView : genericView {
             // Initial list population
             tsArmyPopulate();
 
-            TreeView tvArmy = cast(TreeView)g.getObject("tvArmy");
+            TreeView tvArmy = cast(TreeView)builder.getObject("tvArmy");
             if (tvArmy is null) {
                 writefln("Unable to get tree view tvArmy");
             }
@@ -223,7 +224,7 @@ class mainView : genericView {
     string tvArmyGetSelection() {
         string retVal = null;
 
-        TreeView tvArmy = cast(TreeView)g.getObject("tvArmy");
+        TreeView tvArmy = cast(TreeView)builder.getObject("tvArmy");
         if (tvArmy is null) {
             writefln("Unable to get tree view tvArmy");
         }
@@ -249,7 +250,7 @@ class mainView : genericView {
      * Show the view and run the main GTK message pump.
      */
     void run() {
-        w.showAll();
+        widget.showAll();
         Main.run();
     }
 
@@ -260,7 +261,7 @@ class mainView : genericView {
      *             populate the list "headers".
      */
     void tsArmyPopulate(masterList list=null) {
-        TreeStore tsArmy = cast(TreeStore)g.getObject("tsArmy");
+        TreeStore tsArmy = cast(TreeStore)builder.getObject("tsArmy");
         if (tsArmy is null) {
             writefln("Unable to get tree store tsArmy");
         }
@@ -308,14 +309,15 @@ class mainView : genericView {
     void replaceSidePane(Widget newView) {
         if (currentSidePaneView is null) {
             // we're replacing the default "replace me" one
-            currentSidePaneView = cast(Widget)g.getObject("gridReplaceMe");
+            currentSidePaneView = cast(Widget)builder.getObject(
+                "gridReplaceMe");
         }
 
         if (currentSidePaneView is null) {
             writefln("currentSidePaneView is null (and shouldn't be)");
         }
         else {
-            Alignment alignmentSidePane = cast(Alignment)g.getObject(
+            Alignment alignmentSidePane = cast(Alignment)builder.getObject(
                 "alignmentSidePane");
             if (alignmentSidePane is null) {
                 writefln("Unable to get alignment alignmentSidePane");

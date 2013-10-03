@@ -51,7 +51,7 @@ class errorView : genericView {
             retVal = false;
         }
         else {
-            Label lblError = cast(Label)g.getObject("lblError");
+            Label lblError = cast(Label)builder.getObject("lblError");
             if (lblError is null) {
                 writefln("Unable to get label lblError");
                 retVal = false;
@@ -60,7 +60,7 @@ class errorView : genericView {
                 lblError.setText(message);
             }
 
-            Button ok = cast(Button)g.getObject("btnOK");
+            Button ok = cast(Button)builder.getObject("btnOK");
             if (ok is null) {
                 writefln("Unable to get btnOK");
                 retVal = false;
@@ -68,13 +68,13 @@ class errorView : genericView {
             else {
                 ok.addOnClicked(
                     delegate void(Button button) {
-                        w.destroy();
+                        widget.destroy();
                     }
                 );
             }
 
             if (retVal) {
-                w.showAll();
+                widget.showAll();
             }
         }
         return retVal;

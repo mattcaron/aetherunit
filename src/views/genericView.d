@@ -17,12 +17,12 @@ abstract class genericView {
     /**
      * Reference to the builder object which contains all our bits
      */
-    mixin declarationAndProperties!("Builder", "g");
+    mixin declarationAndProperties!("Builder", "builder");
 
     /**
      * Reference to the widget we're controlling
      */
-    mixin declarationAndProperties!("Widget", "w");
+    mixin declarationAndProperties!("Widget", "widget");
 
     /**
      * Default constructor
@@ -51,16 +51,16 @@ abstract class genericView {
                         immutable string widgetName) {
         bool retVal = true;
 
-        g = new Builder();
+        builder = new Builder();
 
-        if (!g.addFromString(gladeString, gladeString.length)) {
+        if (!builder.addFromString(gladeString, gladeString.length)) {
             writefln("Couldn't find glade file: %s", widgetResource);
             retVal = false;
         } 
         else {
-            w = cast(Widget)g.getObject(widgetName);
+            widget = cast(Widget)builder.getObject(widgetName);
             
-            if (w is null) {
+            if (widget is null) {
                 writefln("Unable to get handle to widget %s", 
                          widgetName);
                 retVal = false;
