@@ -51,12 +51,6 @@ class errorView : genericView {
             retVal = false;
         }
         else {
-            w.addOnHide(
-                delegate void(Widget aux) { 
-                    w.destroy(); 
-                } 
-            );
-
             Label lblError = cast(Label)g.getObject("lblError");
             if (lblError is null) {
                 writefln("Unable to get label lblError");
