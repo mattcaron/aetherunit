@@ -16,6 +16,12 @@ immutable string WIDGET_NAME = "armorDialog";
  */
 class armorView : genericView {
 
+    /**
+     * Build an instance of this widget
+     *
+     * @return true on success
+     * @return false on failure
+     */
     bool build() {
         string gladeString = import(WIDGET_RESOURCE);
         return super.init(gladeString, WIDGET_RESOURCE, WIDGET_NAME);
