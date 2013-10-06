@@ -60,9 +60,12 @@ models/vehicle.o: models/armyProfile.d \
 
 
 # View dependencies
+views/addView.o: $(RESOURCE_DIR)/addView.glade \
+		 utility/accessorTemplate.d \
+                 views/genericView.d
 views/armorView.o: $(RESOURCE_DIR)/armorView.glade \
-		  utility/accessorTemplate.d \
-                  views/genericView.d
+		   utility/accessorTemplate.d \
+                   views/genericView.d
 views/mainView.o: $(RESOURCE_DIR)/mainView.glade \
 		  utility/accessorTemplate.d \
                   views/genericView.d \

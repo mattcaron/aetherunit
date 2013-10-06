@@ -4,10 +4,12 @@ import std.stdio;
 
 import utility.accessorTemplate;
 
-import views.mainView;
-import views.errorView;
+import views.addView;
 import views.armorView;
+import views.errorView;
+import views.mainView;
 
+import models.aetherVerseObject;
 import models.armyProfile;
 import models.masterList;
 
@@ -99,6 +101,16 @@ class mainController {
     void tvArmyUpdated() {
         // TODO - replace the side pane
         writefln("Path is %s", view.tvArmyGetSelection());
+        aetherVerseObject selection = list.getObjectFromPath(
+            view.tvArmyGetSelection());
+        if (selection is null) {
+            addView add = new addView;
+            add.build();
+            view.replaceSidePane(add.widget);
+        }
+        else {
+            // TODO: pick specific sub-panel
+        }
     }
 
     /**
