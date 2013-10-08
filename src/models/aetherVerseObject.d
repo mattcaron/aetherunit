@@ -17,6 +17,11 @@ abstract class aetherVerseObject {
     mixin declarationAndProperties!("armyProfile", "profile");
 
     /**
+     * Name of this object
+     */
+    mixin declarationAndProperties!("string", "name");
+
+    /**
      * Initializing constructor
      *
      * @param profile reference to profile on which this unit is
