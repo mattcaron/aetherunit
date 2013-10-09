@@ -1,5 +1,7 @@
 module views.armorView;
 
+import controllers.mainController;
+
 import views.genericView;
 /**
  * Constant string which is the name of our UI description file.
@@ -17,12 +19,22 @@ immutable string WIDGET_NAME = "armorDialog";
 class armorView : genericView {
 
     /**
+     * Initializing constructor
+     *
+     * @param controller the controller to which callbacks should be
+     * directed.
+     */
+    this(mainController controller) {
+        super(controller);
+    }
+
+    /**
      * Build an instance of this widget
      *
      * @return true on success
      * @return false on failure
      */
-    bool build() {
+    override bool build() {
         string gladeString = import(WIDGET_RESOURCE);
         return super.init(gladeString, WIDGET_RESOURCE, WIDGET_NAME);
     }

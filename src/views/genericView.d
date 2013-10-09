@@ -5,6 +5,8 @@ import std.stdio;
 import gtk.Builder;
 import gtk.Widget;
 
+import controllers.mainController;
+
 import utility.accessorTemplate;
 
 /**
@@ -15,6 +17,13 @@ abstract class genericView {
     private string gladeString = "";
 
     /**
+     * Reference to the main controller
+     *
+     * This is used to inform the controller of updates
+     */
+    mixin declarationAndProperties!("mainController", "controller");
+
+    /**
      * Reference to the builder object which contains all our bits
      */
     mixin declarationAndProperties!("Builder", "builder");
@@ -23,6 +32,16 @@ abstract class genericView {
      * Reference to the widget we're controlling
      */
     mixin declarationAndProperties!("Widget", "widget");
+
+    /**
+     * Initializing constructor
+     *
+     * @param controller the controller to which callbacks should be
+     * directed.
+     */
+    this(mainController controller) {
+        this.controller = controller;
+    }
 
     /**
      * Default constructor
@@ -69,4 +88,12 @@ abstract class genericView {
 
         return retVal;
     }
+
+    /**
+     * Build an instance of this widget
+     *
+     * @return true on success
+     * @return false on failure
+     */
+    abstract bool build();
 }

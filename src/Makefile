@@ -62,9 +62,11 @@ models/vehicle.o: models/armyProfile.d \
 # View dependencies
 views/addView.o: $(RESOURCE_DIR)/addView.glade \
 		 utility/accessorTemplate.d \
+		 controllers/mainController.d \
                  views/genericView.d
 views/armorView.o: $(RESOURCE_DIR)/armorView.glade \
 		   utility/accessorTemplate.d \
+		   controllers/mainController.d \
                    views/genericView.d
 views/mainView.o: $(RESOURCE_DIR)/mainView.glade \
 		  utility/accessorTemplate.d \
@@ -74,6 +76,8 @@ views/mainView.o: $(RESOURCE_DIR)/mainView.glade \
 views/errorView.o: $(RESOURCE_DIR)/errorView.glade \
 		   utility/accessorTemplate.d \
                    views/genericView.d
+views/genericView.o: utility/accessorTemplate.d \
+		     controllers/mainController.d
 
 # Controller dependencies
 controllers/mainController.o: utility/accessorTemplate.d \

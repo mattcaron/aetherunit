@@ -9,6 +9,8 @@ import gtk.Widget;
 
 import gobject.Type;
 
+import controllers.mainController;
+
 import utility.accessorTemplate;
 
 import views.genericView;
@@ -29,12 +31,22 @@ immutable string WIDGET_NAME = "addDialog";
 class addView : genericView {
 
     /**
+     * Initializing constructor
+     *
+     * @param controller the controller to which callbacks should be
+     * directed.
+     */
+    this(mainController controller) {
+        super(controller);
+    }
+
+    /**
      * Build an instance of this widget
      *
      * @return true on success
      * @return false on failure
      */
-    bool build() {
+    override bool build() {
         string gladeString = import(WIDGET_RESOURCE);
         bool retVal = true;
 

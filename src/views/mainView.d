@@ -87,13 +87,6 @@ mixin template generateSpinButtonCallback(string variableName) {
 class mainView : genericView {
 
     /**
-     * Reference to the main controller
-     *
-     * This is used to inform the controller of updates
-     */
-    mixin declarationAndProperties!("mainController", "controller");
-
-    /**
      * Reference to the current side pane
      */
     mixin declarationAndProperties!("Widget", "currentSidePaneView");
@@ -141,7 +134,7 @@ class mainView : genericView {
      * directed.
      */
     this(mainController controller) {
-        this.controller = controller;
+        super(controller);
         currentSidePaneView = null;
     }
 
@@ -328,5 +321,14 @@ class mainView : genericView {
                 alignmentSidePane.add(currentSidePaneView);
             }
         }
+    }
+
+    /**
+     * Stub satisfy abstract base class
+     *
+     * @return true, always
+     */
+    override bool build() {
+        return true;
     }
 }

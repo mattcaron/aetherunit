@@ -28,12 +28,6 @@ immutable string WIDGET_NAME = "errorDialog";
 class errorView : genericView {
 
     /**
-     * Initializing constructor
-     */
-    this() {
-    }
-
-    /**
      * Popup the dialog window
      *
      * @param message message to display
@@ -78,5 +72,14 @@ class errorView : genericView {
             }
         }
         return retVal;
+    }
+
+    /**
+     * Stub satisfy abstract base class
+     *
+     * @return true, always
+     */
+    override bool build() {
+        return true;
     }
 }
