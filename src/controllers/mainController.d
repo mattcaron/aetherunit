@@ -7,6 +7,7 @@ import utility.accessorTemplate;
 import views.addView;
 import views.armorView;
 import views.errorView;
+import views.genericView;
 import views.mainView;
 
 import models.aetherVerseObject;
@@ -63,6 +64,11 @@ class mainController {
      */
     mixin declarationAndProperties!("masterList", "list");
 
+    /**
+     * Current object being created (essentially, it's "in flux")
+     */
+    mixin declarationAndProperties!("aetherVerseObject", "currentObject");
+
     /***************** Callbacks *************/
     /**
      * Function to update the model's DEX
@@ -99,12 +105,15 @@ class mainController {
      * changes
      */
     void tvArmyUpdated() {
-        // TODO - replace the side pane
-        writefln("Path is %s", view.tvArmyGetSelection());
+        // If this returns null, it's a top level heading, not a real
+        // path, and we just put the generic addView in.
+        // Once the button is clicked, only then do we care exactly
+        // which top level heading it is.
         aetherVerseObject selection = list.getObjectFromPath(
             view.tvArmyGetSelection());
+
         if (selection is null) {
-            addView add = new addView;
+            addView add = new addView(this);
             add.build();
             view.replaceSidePane(add.widget);
         }
@@ -112,6 +121,48 @@ class mainController {
             // TODO: pick specific sub-panel
         }
     }
+
+    /**
+     * Function to respond to the generic "Add" button being clicked
+     */
+    void onAddClicked() {
+        masterList.listType selectedType = list.getObjectTypeFromPath(
+            view.tvArmyGetSelection());
+        genericView newView;
+
+        // replace the side view with the correct panel for the
+        // currently selected TreeView item
+        switch (selectedType) {
+        case masterList.listType.BasicUnit:
+            writefln("TODO: implement side panel for %s", selectedType);
+            break;
+        case masterList.listType.EliteUnit:
+            writefln("TODO: implement side panel for %s", selectedType);
+            break;
+        case masterList.listType.SupportUnit:
+            writefln("TODO: implement side panel for %s", selectedType);
+            break;
+        case masterList.listType.Armor:
+            newView = new armorView(this);
+            break;
+        case masterList.listType.MeleeWeapon:
+            writefln("TODO: implement side panel for %s", selectedType);
+            break;
+        case masterList.listType.RangedWeapon:
+            writefln("TODO: implement side panel for %s", selectedType);
+            break;
+        default:
+            writefln("Warning - unknown type: %s", selectedType);
+            break;
+        }
+
+        if (newView !is null) {
+            newView.build();
+            view.replaceSidePane(newView.widget);
+        }
+    }
+
+    /******************* Generic functions ****************/
 
     /**
      * Default constructor

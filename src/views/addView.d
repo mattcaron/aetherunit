@@ -54,7 +54,17 @@ class addView : genericView {
             retVal = false;
         }
         else {
-            // hook button here
+            Button buttonAdd = cast(Button)builder.getObject("buttonAdd");
+            if (buttonAdd is null) {
+                writefln("Unable to get button: buttonAdd");
+            }
+            else {
+                buttonAdd.addOnClicked(
+                    delegate void (Button button) {
+                        controller.onAddClicked();
+                    }
+                );
+            }
         }
         return retVal;
     }

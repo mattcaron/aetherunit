@@ -20,6 +20,23 @@ import models.meleeWeapon;
 class masterList {
 
     /**
+     * List types
+     *
+     * This is an enumerated type so that we can reference them in a
+     * quick and easy fashion. Everything in this list should be
+     * replecated in the list below.
+     */
+    enum listType {
+        Unknown, 
+        BasicUnit,
+        EliteUnit,
+        SupportUnit,
+        Armor,
+        MeleeWeapon,
+        RangedWeapon
+    }
+
+    /**
      * List of basic units
      */
     mixin declarationAndProperties!("basicUnit[]", "basicUnits");
@@ -111,6 +128,54 @@ class masterList {
         }
         // else, it's == 1 so it's a heading or nothing is selected,
         // just set the add button
+
+        return retVal;
+    }
+
+    /**
+     * Get the base object type to which a TreeView coordinates "path"
+     * points.
+     *
+     * This presumes that it is pointed at a heading.
+     *
+     * See above description of how the path works
+     *
+     * @param path the path to be decoded
+     *
+     * @return The appropriate listType, or UNKNOWN if we can't figure
+     * out what the path points to.
+     */
+    listType getObjectTypeFromPath(string path) {
+        listType retVal = listType.Unknown;
+        int[] indices;
+        string[] splitStrings = split(path, regex(r",\D*"));
+        foreach (string splitString; splitStrings) {
+            indices ~= to!int(splitString);
+        }
+        
+        switch (indices[0]) {
+        case 0:
+            retVal = listType.BasicUnit;
+            break;
+        case 1:
+            retVal = listType.EliteUnit;
+            break;
+        case 2:
+            retVal = listType.SupportUnit;
+            break;
+        case 3:
+            retVal = listType.Armor;
+            break;
+        case 4:
+            retVal = listType.RangedWeapon;
+            break;
+        case 5:
+            retVal = listType.MeleeWeapon;
+            break;
+        default:
+            // retVal is already listType.Unknown
+            break;
+        }
 
         return retVal;
     }
