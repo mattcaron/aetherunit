@@ -60,13 +60,11 @@ mixin template declarationAndProperties(string type, string name)
     mixin (
         "private "~type~" _"~name~";
         @property {
-            "~type~" "~name~"()
-            {
+            "~type~" "~name~"() {
                 return _"~name~";
             }
 
-            "~type~" "~name~"("~type~" "~name~")
-            {
+            "~type~" "~name~"("~type~" "~name~") {
                 return _"~name~" = "~name~";
             }
         }"
