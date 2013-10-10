@@ -12,15 +12,6 @@ import models.statList;
 abstract class unit : aetherVerseObject {
 
     /**
-     * Unit types
-     */
-    enum unitType {
-        Basic,
-        Elite,
-        Support
-    }
-
-    /**
      * Look up table of the base number of models per TEK level.
      *
      * TEK is the index in to the array.
@@ -45,11 +36,6 @@ abstract class unit : aetherVerseObject {
      * Final list for this unit
      */
     mixin declarationAndProperties!("statList", "unitStatDifferential");
-
-    /**
-     * Type of the unit
-     */
-    mixin declarationAndProperties!("unitType", "type");
 
     /**
      * Initializing constructor

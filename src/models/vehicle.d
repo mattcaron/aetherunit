@@ -30,8 +30,5 @@ abstract class vehicle : supportUnit {
      */
     this(armyProfile profile) {
         super(profile);
-        type = unitType.Support;
     }
-
-
 }

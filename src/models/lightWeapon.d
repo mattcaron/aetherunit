@@ -8,7 +8,7 @@ import models.rangedWeapon;
 /**
  *  An abstract class representing a light weapon
  */
-abstract class lightWeapon : rangedWeapon {
+class lightWeapon : rangedWeapon {
 
     /**
      * Initializing constructor
@@ -20,6 +20,5 @@ abstract class lightWeapon : rangedWeapon {
      */
     this(armyProfile profile) {
         super(profile);
-        type = rangedWeaponType.Light;
     }
 }

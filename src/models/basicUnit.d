@@ -25,6 +25,5 @@ class basicUnit : unit {
      */
     this(armyProfile profile) {
         super(profile);
-        type = unitType.Basic;
     }
 }

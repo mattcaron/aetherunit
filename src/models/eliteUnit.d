@@ -30,7 +30,6 @@ class eliteUnit : unit {
      */
     this(armyProfile profile) {
         super(profile);
-        type = unitType.Elite;
     }
 
 }

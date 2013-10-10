@@ -8,7 +8,7 @@ import models.armyProfile;
 /**
  *  A class representing a melee weapon.
  */
-abstract class meleeWeapon : aetherVerseObject {
+class meleeWeapon : aetherVerseObject {
 
     /**
      * The weapon's damage.

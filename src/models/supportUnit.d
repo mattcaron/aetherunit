@@ -30,8 +30,5 @@ class supportUnit : unit {
      */
     this(armyProfile profile) {
         super(profile);
-        type = unitType.Support;
     }
-
-
 }

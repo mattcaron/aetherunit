@@ -1,5 +1,7 @@
 module models.aetherVerseObject;
 
+import std.string;
+
 import utility.accessorTemplate;
 
 import models.armyProfile;
@@ -20,6 +22,14 @@ abstract class aetherVerseObject {
      * Name of this object
      */
     mixin declarationAndProperties!("string", "name");
+
+    @property {
+        string type() {
+            return this.classinfo.name[
+                lastIndexOf(this.classinfo.name, ".")+1..
+                this.classinfo.name.length];
+        }
+    }
 
     /**
      * Initializing constructor
@@ -45,5 +55,4 @@ abstract class aetherVerseObject {
      * @return false if failed
      */
     abstract bool validate();
-    
 }

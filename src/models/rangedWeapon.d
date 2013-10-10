@@ -11,15 +11,6 @@ import models.armyProfile;
 abstract class rangedWeapon : aetherVerseObject {
 
     /**
-     * Ranged weapon types
-     */
-    enum rangedWeaponType {
-        Light,
-        Assault,
-        Heavy
-    }
-
-    /**
      * The weapon's damage.
      */
     mixin declarationAndProperties!("int", "DAM");
@@ -37,11 +28,6 @@ abstract class rangedWeapon : aetherVerseObject {
      *
      */
     mixin declarationAndProperties!("int", "NumberOfShots");
-
-    /**
-     * Type of the weapon
-     */
-    mixin declarationAndProperties!("rangedWeaponType", "type");
 
     /**
      * Initializing constructor
