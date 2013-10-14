@@ -5,6 +5,7 @@ import std.string;
 import utility.accessorTemplate;
 
 import models.armyProfile;
+import models.statList;
 
 /**
  * An abstract object class for something existing in the aetherverse.
@@ -12,16 +13,20 @@ import models.armyProfile;
 abstract class aetherVerseObject {
 
     /**
-     * Object to store a reference to the army profile
-     *
-     * @FIXME - make read only
-     */
-    mixin declarationAndProperties!("armyProfile", "profile");
-
-    /**
      * Name of this object
      */
     mixin declarationAndProperties!("string", "name");
+
+    /**
+     * Unit stat list
+     *
+     * If the class is represents a unit, it is the final stat list
+     * for that unit, which is the 
+     *
+     * If the class represents a trait, this is passed in, so that the
+     * trait can run any checks it needs.
+     */
+    mixin declarationAndProperties!("statList", "unitStatList");
 
     @property {
         string type() {
@@ -32,15 +37,9 @@ abstract class aetherVerseObject {
     }
 
     /**
-     * Initializing constructor
-     *
-     * @param profile reference to profile on which this unit is
-     *                based.
-     *
-     * @FIXME - make read only
+     * Default constructor
      */
-    this(armyProfile profile) {
-        this.profile = profile;
+    this() {
     }
 
     /**

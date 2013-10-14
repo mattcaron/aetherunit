@@ -33,7 +33,18 @@ abstract class unit : aetherVerseObject {
     immutable int extraStatPoints = 0;
 
     /**
-     * Final list for this unit
+     * Object to store a reference to the army profile
+     *
+     * @FIXME - make read only
+     */
+    mixin declarationAndProperties!("armyProfile", "profile");
+
+    /**
+     * Unit stat list differential
+     *
+     * This records where any extra stat points were spent, relative
+     * to the base army profile. This, combined with the army profile,
+     * and any modifications granted by traits yields the unitStatList
      */
     mixin declarationAndProperties!("statList", "unitStatDifferential");
 
@@ -46,7 +57,9 @@ abstract class unit : aetherVerseObject {
      *                based.
      */
     this(armyProfile profile) {
-        super(profile);
+        this.profile = profile;
+        this.unitStatList = new statList();
+        this.unitStatDifferential = new statList();
     }
 
     /**

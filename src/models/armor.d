@@ -2,13 +2,14 @@ module models.armor;
 
 import utility.accessorTemplate;
 
-import models.aetherVerseObject;
 import models.armyProfile;
+import models.unit;
+
 
 /**
  *  A class representing a pieve of armor.
  */
-abstract class armor : aetherVerseObject {
+abstract class armor : unit {
 
     /**
      * ARM stat.

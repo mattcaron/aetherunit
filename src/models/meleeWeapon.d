@@ -2,13 +2,13 @@ module models.meleeWeapon;
 
 import utility.accessorTemplate;
 
-import models.aetherVerseObject;
 import models.armyProfile;
+import models.unit;
 
 /**
  *  A class representing a melee weapon.
  */
-class meleeWeapon : aetherVerseObject {
+class meleeWeapon : unit {
 
     /**
      * The weapon's damage.

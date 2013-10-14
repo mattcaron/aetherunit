@@ -2,13 +2,13 @@ module models.rangedWeapon;
 
 import utility.accessorTemplate;
 
-import models.aetherVerseObject;
 import models.armyProfile;
+import models.unit;
 
 /**
  *  An abstract class representing a generic ranged weapon.
  */
-abstract class rangedWeapon : aetherVerseObject {
+abstract class rangedWeapon : unit {
 
     /**
      * The weapon's damage.
