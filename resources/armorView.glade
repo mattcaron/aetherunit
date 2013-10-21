@@ -88,5 +88,70 @@
         <property name="height">1</property>
       </packing>
     </child>
+    <child>
+      <object class="GtkFrame" id="frame1">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
+        <property name="margin_top">5</property>
+        <property name="margin_bottom">5</property>
+        <property name="label_xalign">0</property>
+        <property name="shadow_type">in</property>
+        <child>
+          <object class="GtkAlignment" id="alignment1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="left_padding">12</property>
+            <child>
+              <object class="GtkTreeView" id="treeview1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="model">lsTraits</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection1"/>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="treeviewcolumn1">
+                    <child>
+                      <object class="GtkCellRendererToggle" id="cellrenderertoggle1"/>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="treeviewcolumn2">
+                    <child>
+                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="label">
+          <object class="GtkLabel" id="label3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">&lt;b&gt;Traits:&lt;/b&gt;</property>
+            <property name="use_markup">True</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">3</property>
+        <property name="width">2</property>
+        <property name="height">1</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkListStore" id="lsTraits">
+    <columns>
+      <!-- column-name selected -->
+      <column type="gboolean"/>
+      <!-- column-name trait -->
+      <column type="gchararray"/>
+    </columns>
   </object>
 </interface>

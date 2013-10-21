@@ -3,6 +3,7 @@ module models.armor;
 import utility.accessorTemplate;
 
 import models.armyProfile;
+import models.armorTrait;
 import models.unit;
 
 
@@ -17,6 +18,11 @@ abstract class armor : unit {
     mixin declarationAndProperties!("int", "ARM");
 
     /**
+     * All the traits which can be selected for armor
+     */
+    mixin declarationAndProperties!("armorTrait[]", "traits");
+
+    /**
      * Initializing constructor
      *
      * @FIXME - make readonly
@@ -26,5 +32,7 @@ abstract class armor : unit {
      */
     this(armyProfile profile) {
         super(profile);
+        // populate traits
+        armorTrait.populate(traits);
     }
 }
