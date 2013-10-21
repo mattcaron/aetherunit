@@ -5,9 +5,9 @@ import std.stdio;
 import gtk.Builder;
 import gtk.Widget;
 
-import controllers.mainController;
-
 import utility.accessorTemplate;
+
+import controllers.mainController;
 
 /**
  * Abstract class to control a generic view
