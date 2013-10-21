@@ -253,7 +253,7 @@ class mainView : genericView {
      * @param list the master list or null if you just want to
      *             populate the list "headers".
      */
-    void tsArmyPopulate(masterList list=null) {
+    void tsArmyPopulate(masterList list = null) {
         TreeStore tsArmy = cast(TreeStore)builder.getObject("tsArmy");
         if (tsArmy is null) {
             writefln("Unable to get tree store tsArmy");
