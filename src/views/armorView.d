@@ -1,8 +1,12 @@
 module views.armorView;
 
+import std.stdio;
+
+import controllers.armorController;
 import controllers.mainController;
 
-import views.genericView;
+
+import views.subpanelView;
 /**
  * Constant string which is the name of our UI description file.
  */
@@ -16,16 +20,20 @@ immutable string WIDGET_NAME = "armorDialog";
 /**
  * Class to control the armor view
  */
-class armorView : genericView {
+class armorView : subpanelView {
 
     /**
      * Initializing constructor
      *
      * @param controller the controller to which callbacks should be
      * directed.
+     *
+     * @param subController the subpanel controller to which callbacks
+     * should be directed.
+     *
      */
-    this(mainController controller) {
-        super(controller);
+    this(mainController controller, armorController subController) {
+        super(controller, subController);
     }
 
     /**

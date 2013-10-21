@@ -4,6 +4,10 @@ import std.stdio;
 
 import utility.accessorTemplate;
 
+import controllers.armorController;
+import controllers.genericController;
+import controllers.subpanelController;
+
 import views.addView;
 import views.armorView;
 import views.errorView;
@@ -44,7 +48,7 @@ mixin template generateModelUpdate(string variableName) {
  *
  * Controls the window in which the user will spend most of their time
  */
-class mainController {
+class mainController: genericController {
 
     /***************** Views *****************/
 
@@ -128,7 +132,7 @@ class mainController {
     void onAddClicked() {
         masterList.listType selectedType = list.getObjectTypeFromPath(
             view.tvArmyGetSelection());
-        genericView newView;
+        subpanelController newSubpanel;
 
         // replace the side view with the correct panel for the
         // currently selected TreeView item
@@ -143,7 +147,7 @@ class mainController {
             writefln("TODO: implement side panel for %s", selectedType);
             break;
         case masterList.listType.Armor:
-            newView = new armorView(this);
+            newSubpanel = new armorController(this);
             break;
         case masterList.listType.MeleeWeapon:
             writefln("TODO: implement side panel for %s", selectedType);
@@ -156,9 +160,8 @@ class mainController {
             break;
         }
 
-        if (newView !is null) {
-            newView.build();
-            view.replaceSidePane(newView.widget);
+        if (newSubpanel !is null) {
+            view.replaceSidePane(newSubpanel.getWidget());
         }
     }
 
