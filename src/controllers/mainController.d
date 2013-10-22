@@ -4,14 +4,12 @@ import std.stdio;
 
 import utility.accessorTemplate;
 
+import controllers.addController;
 import controllers.armorController;
 import controllers.genericController;
 import controllers.subpanelController;
 
-import views.addView;
-import views.armorView;
 import views.errorView;
-import views.genericView;
 import views.mainView;
 
 import models.aetherVerseObject;
@@ -110,16 +108,17 @@ class mainController: genericController {
      */
     void tvArmyUpdated() {
         // If this returns null, it's a top level heading, not a real
-        // path, and we just put the generic addView in.
+        // path, and we just put the generic addView in via the
+        // addController.
+        //
         // Once the button is clicked, only then do we care exactly
         // which top level heading it is.
         aetherVerseObject selection = list.getObjectFromPath(
             view.tvArmyGetSelection());
 
         if (selection is null) {
-            addView add = new addView(this);
-            add.build();
-            view.replaceSidePane(add.widget);
+            addController add = new addController(this);
+            view.replaceSidePane(add.getWidget());
         }
         else {
             // TODO: pick specific sub-panel

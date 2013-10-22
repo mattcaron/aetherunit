@@ -9,11 +9,12 @@ import gtk.Widget;
 
 import gobject.Type;
 
+import controllers.addController;
 import controllers.mainController;
 
 import utility.accessorTemplate;
 
-import views.genericView;
+import views.subpanelView;
 
 /**
  * Constant string which is the name of our UI description file.
@@ -28,16 +29,19 @@ immutable string WIDGET_NAME = "addDialog";
 /**
  * Class to control the armor view
  */
-class addView : genericView {
+class addView : subpanelView {
 
     /**
      * Initializing constructor
      *
      * @param controller the controller to which callbacks should be
      * directed.
+     *
+     * @param subController the subpanel controller to which callbacks
+     * should be directed.
      */
-    this(mainController controller) {
-        super(controller);
+    this(mainController controller, addController subController) {
+        super(controller, subController);
     }
 
     /**
