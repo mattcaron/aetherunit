@@ -57,6 +57,11 @@ class armorView : subpanelView {
         return super.init(gladeString, WIDGET_RESOURCE, WIDGET_NAME);
     }
 
+    /**
+     * Populate the list store of traits
+     *
+     * @param traits list of traits to put into the list store
+     */
     void lsTraitPopulate(armorTrait[] traits = null) {
         ListStore lsTraits = cast(ListStore)builder.getObject("lsTraits");
         if (lsTraits is null) {

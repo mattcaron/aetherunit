@@ -8,7 +8,7 @@ import models.unit;
 
 
 /**
- *  A class representing a pieve of armor.
+ *  A class representing a piece of armor.
  */
 abstract class armor : unit {
 
