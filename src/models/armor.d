@@ -10,7 +10,9 @@ import models.unit;
 /**
  *  A class representing a piece of armor.
  */
-abstract class armor : unit {
+// FIXME - not sure this descending from unit is correct. Might
+// indicate a need to push additional things up in to aetherVerseObject.
+class armor : unit {
 
     /**
      * ARM stat.
@@ -34,5 +36,23 @@ abstract class armor : unit {
         super(profile);
         // populate traits
         armorTrait.populate(traits);
+    }
+
+    /**
+     * Calculate the cost of this object
+     */
+    override void calculate() {
+        // FIXME: Do calculation
+    }
+
+    /**
+     * Validate that this object can be used in the current context.
+     *
+     * @return true if validation passed
+     * @return false if failed
+     */
+    override bool validate() {
+        // FIXME: Do validation
+        return true;
     }
 }
