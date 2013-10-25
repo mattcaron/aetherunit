@@ -17,11 +17,16 @@ import utility.accessorTemplate;
 class addController: subpanelController {
 
     /**
+     * The view object that we control
+     */
+    mixin declarationAndProperties!("addView", "view");
+
+    /**
      * Initializing constructor
      */
     this(mainController controller) {
         this.view = new addView(this);
-        super(controller);
+        super(controller, this.view);
     }
 
     /**

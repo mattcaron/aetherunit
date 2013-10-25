@@ -19,7 +19,7 @@ abstract class subpanelController: genericController {
     /**
      * The view object that we control
      */
-    mixin declarationAndProperties!("genericView", "view");
+    mixin declarationAndProperties!("genericView", "gView");
 
     /**
      * The main controller which controls the overall window
@@ -31,15 +31,16 @@ abstract class subpanelController: genericController {
      * 
      * @param controller Reference the the main controller
      */
-    this(mainController controller) {
+    this(mainController controller, genericView view) {
         this.controller = controller;
+        this.gView = view;
     }
 
     /**
      * Build the view and return the built widget
      */
     Widget getWidget() {
-        view.build();
-        return view.widget;
+        gView.build();
+        return gView.widget;
     }
 }
