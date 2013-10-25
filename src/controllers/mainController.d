@@ -126,7 +126,8 @@ class mainController: genericController {
     }
 
     /**
-     * Function to respond to the generic "Add" button being clicked
+     * Replace the subpanel with the one determined by the given
+     * path
      */
     void onAddClicked() {
         masterList.listType selectedType = list.getObjectTypeFromPath(

@@ -7,6 +7,7 @@ import gtk.Widget;
 import utility.accessorTemplate;
 
 import controllers.genericController;
+import controllers.mainController;
 
 import views.genericView;
 
@@ -19,6 +20,20 @@ abstract class subpanelController: genericController {
      * The view object that we control
      */
     mixin declarationAndProperties!("genericView", "view");
+
+    /**
+     * The main controller which controls the overall window
+     */
+    mixin declarationAndProperties!("mainController", "controller");
+
+    /**
+     * Initializing constructor
+     * 
+     * @param controller Reference the the main controller
+     */
+    this(mainController controller) {
+        this.controller = controller;
+    }
 
     /**
      * Build the view and return the built widget

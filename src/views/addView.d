@@ -10,7 +10,6 @@ import gtk.Widget;
 import gobject.Type;
 
 import controllers.addController;
-import controllers.mainController;
 
 import utility.accessorTemplate;
 
@@ -32,16 +31,21 @@ immutable string WIDGET_NAME = "addDialog";
 class addView : subpanelView {
 
     /**
+     * Reference to our controller
+     *
+     * This is used to inform our controller of updates
+     */
+    mixin declarationAndProperties!("addController", "controller");
+
+    /**
      * Initializing constructor
      *
      * @param controller the controller to which callbacks should be
      * directed.
      *
-     * @param subController the subpanel controller to which callbacks
-     * should be directed.
      */
-    this(mainController controller, addController subController) {
-        super(controller, subController);
+    this(addController controller) {
+        this.controller = controller;
     }
 
     /**

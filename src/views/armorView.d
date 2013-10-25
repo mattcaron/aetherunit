@@ -10,6 +10,8 @@ import controllers.mainController;
 
 import models.armorTrait;
 
+import utility.accessorTemplate;
+
 import views.subpanelView;
 /**
  * Constant string which is the name of our UI description file.
@@ -27,17 +29,21 @@ immutable string WIDGET_NAME = "armorDialog";
 class armorView : subpanelView {
 
     /**
+     * Reference to our controller
+     *
+     * This is used to inform our controller of updates
+     */
+    mixin declarationAndProperties!("armorController", "controller");
+
+    /**
      * Initializing constructor
      *
      * @param controller the controller to which callbacks should be
      * directed.
      *
-     * @param subController the subpanel controller to which callbacks
-     * should be directed.
-     *
      */
-    this(mainController controller, armorController subController) {
-        super(controller, subController);
+    this(armorController controller) {
+        this.controller = controller;
     }
 
     /**

@@ -7,21 +7,12 @@ import gtk.Widget;
 
 import utility.accessorTemplate;
 
-import controllers.mainController;
-
 /**
  * Abstract class to control a generic view
  */
 abstract class genericView {
 
     private string gladeString = "";
-
-    /**
-     * Reference to the main controller
-     *
-     * This is used to inform the controller of updates
-     */
-    mixin declarationAndProperties!("mainController", "controller");
 
     /**
      * Reference to the builder object which contains all our bits
@@ -32,16 +23,6 @@ abstract class genericView {
      * Reference to the widget we're controlling
      */
     mixin declarationAndProperties!("Widget", "widget");
-
-    /**
-     * Initializing constructor
-     *
-     * @param controller the controller to which callbacks should be
-     * directed.
-     */
-    this(mainController controller) {
-        this.controller = controller;
-    }
 
     /**
      * Default constructor

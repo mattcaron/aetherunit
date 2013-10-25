@@ -87,6 +87,13 @@ mixin template generateSpinButtonCallback(string variableName) {
 class mainView : genericView {
 
     /**
+     * Reference to our controller
+     *
+     * This is used to inform our controller of updates
+     */
+    mixin declarationAndProperties!("mainController", "controller");
+
+    /**
      * Reference to the current side pane
      */
     mixin declarationAndProperties!("Widget", "currentSidePaneView");
@@ -134,7 +141,7 @@ class mainView : genericView {
      * directed.
      */
     this(mainController controller) {
-        super(controller);
+        this.controller = controller;
         currentSidePaneView = null;
     }
 

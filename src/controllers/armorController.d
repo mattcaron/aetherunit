@@ -16,6 +16,7 @@ class armorController: subpanelController {
      * Initializing constructor
      */
     this(mainController controller) {
-        this.view = new armorView(controller, this);
+        super(controller);
+        this.view = new armorView(this);
     }
 }
