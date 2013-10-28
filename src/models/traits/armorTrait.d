@@ -1,4 +1,4 @@
-module models.armorTrait;
+module models.traits.armorTrait;
 
 import std.conv;
 import std.stdio;
@@ -7,7 +7,8 @@ import std.traits;
 import utility.accessorTemplate;
 
 import models.statList;
-import models.aetherVerseTrait;
+
+import models.traits.aetherVerseTrait;
 
 abstract class armorTrait : aetherVerseTrait {
 

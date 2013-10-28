@@ -8,7 +8,7 @@ import gtk.TreeIter;
 import controllers.armorController;
 import controllers.mainController;
 
-import models.armorTrait;
+import models.traits.armorTrait;
 
 import utility.accessorTemplate;
 

@@ -1,6 +1,6 @@
 SOURCES := $(wildcard *.d) $(wildcard utility/*.d) \
 		$(wildcard controllers/*.d) $(wildcard models/*.d) \
-		$(wildcard views/*.d)
+		$(wildcard views/*.d) $(wildcard models/traits/*.d)
 OBJECTS := $(SOURCES:.d=.o)
 TARGET := ../aetherunit
 RESOURCE_DIR := ../resources
@@ -28,12 +28,10 @@ clean:
 # Model dependencies
 models/aetherVerseObject.o: utility/accessorTemplate.d \
 		            models/armyProfile.d
-models/aetherVerseTrait.o: utility/accessorTemplate.d
 models/armor.o: utility/accessorTemplate.d \
                 models/aetherVerseObject.d
 models/armyProfile.o: utility/accessorTemplate.d \
                       models/statList.d
-models/armyTrait.o: utility/accessorTemplate.d
 models/assaultWeapon.o \
 models/heavyWeapon.o \
 models/lightWeapon.o: utility/accessorTemplate.d \
@@ -60,6 +58,11 @@ models/unit.o: utility/accessorTemplate.d \
 models/vehicle.o: models/armyProfile.d \
                   models/supportUnit.d
 
+# Traits (there are a lot of them, so we stuff them in their own
+# directory)
+models/traits/aetherVerseTrait.o: utility/accessorTemplate.d
+models/armyTrait.o: utility/accessorTemplate.d
+models/armorTrait.o: utility/accessorTemplate.d
 
 # View dependencies
 views/addView.o: $(RESOURCE_DIR)/addView.glade \

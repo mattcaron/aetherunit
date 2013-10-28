@@ -3,8 +3,10 @@ module models.armor;
 import utility.accessorTemplate;
 
 import models.armyProfile;
-import models.armorTrait;
 import models.unit;
+
+import models.traits.armorTrait;
+
 
 
 /**
