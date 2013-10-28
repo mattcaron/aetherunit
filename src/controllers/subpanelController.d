@@ -34,13 +34,13 @@ abstract class subpanelController : genericController {
     this(mainController controller, genericView view) {
         this.controller = controller;
         this.gView = view;
+        gView.build();
     }
 
     /**
      * Build the view and return the built widget
      */
     Widget getWidget() {
-        gView.build();
         return gView.widget;
     }
 }
