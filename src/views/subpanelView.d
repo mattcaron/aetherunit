@@ -11,6 +11,6 @@ import views.genericView;
 /**
  * Abstract class to control a sub panel view
  */
-abstract class subpanelView: genericView {
+abstract class subpanelView : genericView {
 
 }

@@ -14,7 +14,7 @@ import utility.accessorTemplate;
  *
  * Controls the sub-window in which the user clicks "add"
  */
-class addController: subpanelController {
+class addController : subpanelController {
 
     /**
      * The view object that we control

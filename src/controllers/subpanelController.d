@@ -14,7 +14,7 @@ import views.genericView;
 /**
  * Abstract class to represent a generic controller for the subpanel
  */
-abstract class subpanelController: genericController {
+abstract class subpanelController : genericController {
 
     /**
      * The view object that we control

@@ -46,7 +46,7 @@ mixin template generateModelUpdate(string variableName) {
  *
  * Controls the window in which the user will spend most of their time
  */
-class mainController: genericController {
+class mainController : genericController {
 
     /***************** Views *****************/
 

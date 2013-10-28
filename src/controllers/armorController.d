@@ -12,7 +12,7 @@ import views.armorView;
  *
  * Controls the sub-window in which the user enters armor things
  */
-class armorController: subpanelController {
+class armorController : subpanelController {
 
     /**
      * The view object that we control
