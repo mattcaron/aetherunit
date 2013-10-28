@@ -1,5 +1,7 @@
 module models.armorTrait;
 
+import std.conv;
+import std.stdio;
 import std.traits;
 
 import utility.accessorTemplate;
@@ -40,8 +42,16 @@ abstract class armorTrait : aetherVerseTrait {
     static void populate(armorTrait[] traits) {
         traits.clear();
         foreach (armorListTrait thisTrait; EnumMembers!armorTraitList) {
-            traits ~= cast(armorTrait) (
-                armorTrait.factory("models.armor" ~ thisTrait));
+            armorTrait newArmorTrait = cast(armorTrait) armorTrait.factory(
+                "models.traits.armor" ~ to!string(thisTrait));
+
+            if (newArmorTrait ! is null) {
+                traits ~= newArmorTrait;
+            }
+            else {
+                writefln("Unable to create models.traits.armor" ~ 
+                         to!string(thisTrait));
+            }
         }
     }
 }
