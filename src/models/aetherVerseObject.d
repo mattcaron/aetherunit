@@ -45,7 +45,7 @@ abstract class aetherVerseObject {
     /**
      * Calculate the cost of this object
      */
-    abstract void calculate();
+    abstract int calculate();
 
     /**
      * Validate that this object can be used in the current context.

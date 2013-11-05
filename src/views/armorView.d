@@ -2,6 +2,7 @@ module views.armorView;
 
 import std.stdio;
 
+import gtk.CellRendererToggle;
 import gtk.ListStore;
 import gtk.TreeIter;
 
@@ -71,14 +72,49 @@ class armorView : subpanelView {
             // Destroy the store first
             lsTraits.clear();
 
-            TreeIter iterator;
+            TreeIter iterator = new TreeIter();
 
+            
             // Then rebuild
             if (traits !is null) {
                 foreach (armorTrait trait; traits) {
+                    writefln("Set value to %s", trait.name);
                     lsTraits.append(iterator);
-                    lsTraits.setValue(iterator, 0, trait.name);
+                    // Column 1 is the name
+                    lsTraits.setValue(iterator, 1, trait.name);
                 }
+            }
+
+            CellRendererToggle toggle = 
+            cast(CellRendererToggle)builder.getObject("toggleArmorTrait");
+            if (toggle is null) {
+                writefln("Unable to get toggle toggleArmorTrait");
+            }
+            else {
+                toggle.addOnToggled(&controller.onToggleArmorTrait);
+            }
+        }
+    }
+
+    /**
+     * Toggle the armor trait setting
+     * 
+     * @param path The tree path of the selection which was toggled
+     * @param value The value to which the selection is to be set
+     */
+    void toggleArmorTrait(string path, bool value) {
+        ListStore lsTraits = cast(ListStore)builder.getObject("lsTraits");
+        if (lsTraits is null) {
+            writefln("Unable to get list store lsTraits");
+        }
+        else {
+            TreeIter iterator = new TreeIter();
+            lsTraits.getIterFromString(iterator, path);
+            if (iterator is null) {
+                writefln("Unable to get iterator for path %s", path);
+            }
+            else {
+                lsTraits.setValue(iterator, 0, value);
             }
         }
     }

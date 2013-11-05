@@ -9,21 +9,24 @@ import utility.accessorTemplate;
 import models.statList;
 
 import models.traits.aetherVerseTrait;
+import models.traits.armorPoweredArmor;
+import models.traits.armorStabilizationArmor;
 
 abstract class armorTrait : aetherVerseTrait {
 
-    enum armorTraitList {
-        PoweredArmor,
-        StabilizationArmor,
-        TacticalBattleArmor,
-        SupportBattleArmor,
-        ReinforcedExoskeletonAssaultArmor,
-        AdvancedBattlesuitSystem,
-        BattlesuitShielding,
-        EnergyShielded,
-        MasterworkArmor,
-        Psyarmor,
-        StealthArmor
+    enum armorTraitList : string {
+        PoweredArmor = "Powered Armor",
+        StabilizationArmor = "Stabilization Armor",
+        TacticalBattleArmor = "Tactical Battle Armor",
+        SupportBattleArmor = "Support Battle Armor",
+        ReinforcedExoskeletonAssaultArmor = 
+                "Reinforced Exoskeleton Assault Armor", 
+        AdvancedBattlesuitSystem = "Advanced Battlesuit System",
+        BattlesuitShielding = "Battlesuit Shielding",
+        EnergyShielded = "Energy Shielded",
+        MasterworkArmor = "Masterwork Armor",
+        Psyarmor = "Psyarmor",
+        StealthArmor = "Stealth Armor"
     }
 
     /**
@@ -36,23 +39,19 @@ abstract class armorTrait : aetherVerseTrait {
     }
 
     /**
-     * Wipe an array of traits and populate it with all the armor traits
+     * Populate a list of all possible armor traits
      *
-     * @param traits list of traits to populate
+     * @param unitStatList the base unit stat list
+     * 
+     * @return a populated list of traits
      */
-    static void populate(armorTrait[] traits) {
-        traits.clear();
-        foreach (armorListTrait thisTrait; EnumMembers!armorTraitList) {
-            armorTrait newArmorTrait = cast(armorTrait) armorTrait.factory(
-                "models.traits.armor" ~ to!string(thisTrait));
-
-            if (newArmorTrait ! is null) {
-                traits ~= newArmorTrait;
-            }
-            else {
-                writefln("Unable to create models.traits.armor" ~ 
-                         to!string(thisTrait));
-            }
-        }
+    static armorTrait[] populate(statList unitStatList) {
+        armorTrait[] traits;
+        armorTrait newTrait;
+        newTrait = new armorPoweredArmor(unitStatList);
+        traits ~= newTrait;
+        newTrait = new armorStabilizationArmor(unitStatList);
+        traits ~= newTrait;
+        return traits;
     }
 }

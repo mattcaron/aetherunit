@@ -7,8 +7,6 @@ import models.unit;
 
 import models.traits.armorTrait;
 
-
-
 /**
  *  A class representing a piece of armor.
  */
@@ -37,14 +35,15 @@ class armor : unit {
     this(armyProfile profile) {
         super(profile);
         // populate traits
-        armorTrait.populate(traits);
+        traits = armorTrait.populate(unitStatList);
     }
 
     /**
      * Calculate the cost of this object
      */
-    override void calculate() {
+    override int calculate() {
         // FIXME: Do calculation
+        return 0;
     }
 
     /**

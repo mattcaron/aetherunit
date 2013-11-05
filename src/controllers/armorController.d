@@ -1,5 +1,10 @@
 module controllers.armorController;
 
+import std.stdio;
+import std.conv;
+
+import gtk.CellRendererToggle;
+
 import utility.accessorTemplate;
 
 import controllers.subpanelController;
@@ -34,5 +39,23 @@ class armorController : subpanelController {
         super(controller, this.view);
         this.currentArmor = new armor(controller.profile);
         this.view.lsTraitPopulate(currentArmor.traits);
+    }
+
+    /**
+     * Callback for when the armor trait toggle gets toggled
+     */
+    void onToggleArmorTrait(string path, CellRendererToggle toggle) {
+        // The path here is simple - it's just the index in to our
+        // list of traits
+        int index = to!int(path);
+        if (index >= currentArmor.traits.length) {
+            writefln("Error: index exceeds currentArmor.traits.length");
+        }
+        else {
+            currentArmor.traits[index].selected = 
+            !currentArmor.traits[index].selected;
+            view.toggleArmorTrait(path, currentArmor.traits[index].selected);
+        }
+        
     }
 }

@@ -21,7 +21,7 @@ abstract class aetherVerseTrait : aetherVerseObject {
     /**
      * List of other traits that this trait invalidates
      */
-    mixin declarationAndProperties!("aetherVerseTrait[]", "invalidationList");
+    mixin declarationAndProperties!("string[]", "invalidationList");
 
     /**
      * Description of this trait
