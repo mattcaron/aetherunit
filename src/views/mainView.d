@@ -5,6 +5,7 @@ import std.conv;
 
 import gtk.Alignment;
 import gtk.Button;
+import gtk.CellRendererToggle;
 import gtk.Label;
 import gtk.Main;
 import gtk.SpinButton;
@@ -12,6 +13,7 @@ import gtk.TreeIter;
 import gtk.TreePath;
 import gtk.TreeSelection;
 import gtk.TreeStore;
+import gtk.ListStore;
 import gtk.TreeView;
 import gtk.TreeViewColumn;
 import gtk.Widget;
@@ -33,6 +35,7 @@ import utility.debugPrint;
 import controllers.mainController;
 
 import models.masterList;
+import models.traits.armyCharacteristic;
 
 import views.genericView;
 
@@ -329,6 +332,76 @@ class mainView : genericView {
             }
         }
     }
+
+   /**
+     * Populate the list store of characteristics
+     *
+     * @param traits list of characteristics to put into the list store
+     */
+    // FIXME - this is nearly identical to armorView's
+    // lsTraitPopulate. Likely a candidate for a mixin.
+    void lsCharacteristicPopulate(
+        armyCharacteristic[] characteristics = null) {
+        ListStore lsCharacteristics = cast(ListStore)builder.getObject(
+            "lsCharacteristics");
+        if (lsCharacteristics is null) {
+            writefln("Unable to get list store lsCharacteristics");
+        }
+        else {
+            // Destroy the store first
+            lsCharacteristics.clear();
+
+            TreeIter iterator = new TreeIter();
+            
+            // Then rebuild
+            if (characteristics !is null) {
+                foreach (armyCharacteristic characteristic; characteristics) {
+                    writefln("Set value to %s", characteristic.name);
+                    lsCharacteristics.append(iterator);
+                    // Column 1 is the name
+                    lsCharacteristics.setValue(iterator, 1, 
+                                               characteristic.name);
+                }
+            }
+
+            CellRendererToggle toggle = 
+            cast(CellRendererToggle)builder.getObject(
+                "toggleArmyCharacteristic");
+            if (toggle is null) {
+                writefln("Unable to get toggle toggleArmyCharacteristic");
+            }
+            else {
+                toggle.addOnToggled(&controller.onToggleArmyCharacteristic);
+            }
+        }
+    }
+    
+    /**
+     * Toggle the armor trait setting
+     * 
+     * @param path The tree path of the selection which was toggled
+     * @param value The value to which the selection is to be set
+     */
+    // FIXME - this is nearly identical to armorView's
+    // toggleArmorTrait. Mixin?
+    void toggleArmyCharacteristic(string path, bool value) {
+        ListStore lsCharacteristics = cast(ListStore)builder.getObject(
+            "lsCharacteristics");
+        if (lsCharacteristics is null) {
+            writefln("Unable to get list store lsCharacteristics");
+        }
+        else {
+            TreeIter iterator = new TreeIter();
+            lsCharacteristics.getIterFromString(iterator, path);
+            if (iterator is null) {
+                writefln("Unable to get iterator for path %s", path);
+            }
+            else {
+                lsCharacteristics.setValue(iterator, 0, value);
+            }
+        }
+    }
+
 
     /**
      * Stub satisfy abstract base class

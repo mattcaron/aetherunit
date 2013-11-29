@@ -1,6 +1,9 @@
 module controllers.mainController;
 
 import std.stdio;
+import std.conv;
+
+import gtk.CellRendererToggle;
 
 import utility.accessorTemplate;
 
@@ -173,10 +176,16 @@ class mainController : genericController {
     this() {
         profile = new armyProfile();
         list = new masterList();
+        view = new mainView(this);
     }
 
     /**
      * Create and run the main GTK window
+     *
+     * This controller is a little special in that the others tend to
+     * do the setup in their constructors, but tis guys does it in its
+     * "go" function so that we can have a result returned back from
+     * all the GTK platform init stuff.
      *
      * @param args arguments passed on the command line
      *
@@ -185,12 +194,32 @@ class mainController : genericController {
     int go(string[] args) {
         int retVal = 0;
 
-        view = new mainView(this);
-
         if (view.init(args)) {
+            this.view.lsCharacteristicPopulate(profile.characteristics);
             view.run();
         }
         return retVal;
     }
+
+    /**
+     * Callback for when the army characteristic toggle gets toggled
+     */
+    // FIXME - this is nearly identical to armyController's
+    // onToggleArmorTrait. mixin?
+    void onToggleArmyCharacteristic(string path, CellRendererToggle toggle) {
+        // The path here is simple - it's just the index in to our
+        // list of traits
+        int index = to!int(path);
+        if (index >= profile.characteristics.length) {
+            writefln("Error: index exceeds armyProfile.characteristics.length");
+        }
+        else {
+            profile.characteristics[index].selected = 
+            !profile.characteristics[index].selected;
+            view.toggleArmyCharacteristic(
+                path, profile.characteristics[index].selected);
+        }
+    }
+
 }
 

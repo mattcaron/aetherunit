@@ -56,6 +56,5 @@ class armorController : subpanelController {
             !currentArmor.traits[index].selected;
             view.toggleArmorTrait(path, currentArmor.traits[index].selected);
         }
-        
     }
 }

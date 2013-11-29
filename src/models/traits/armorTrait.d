@@ -48,6 +48,9 @@ abstract class armorTrait : aetherVerseTrait {
     static armorTrait[] populate(statList unitStatList) {
         armorTrait[] traits;
         armorTrait newTrait;
+        // FIXME - looping through the enum would be nice here, but I
+        // can't make it actually work
+        // FIXME - make this a series of mixins
         newTrait = new armorPoweredArmor(unitStatList);
         traits ~= newTrait;
         newTrait = new armorStabilizationArmor(unitStatList);

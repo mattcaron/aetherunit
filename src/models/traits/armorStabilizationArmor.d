@@ -12,6 +12,7 @@ class armorStabilizationArmor : armorTrait {
      * Initializing constructor
      *
      * @param unitStatList the stat list for the unit to which this 
+     *                     trait applies.
      */
     this(statList unitStatList) {
         super(unitStatList);

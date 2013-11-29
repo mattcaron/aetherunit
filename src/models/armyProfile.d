@@ -3,6 +3,7 @@ module models.armyProfile;
 import utility.accessorTemplate;
 
 import models.statList;
+import models.traits.armyCharacteristic;
 
 /**
  * Template to make an accessor for a property contained in the
@@ -89,6 +90,13 @@ class armyProfile {
     mixin statListProperties!("PRE");
 
     /**
+     * All the characteristics which can be selected for an army
+     *
+     * These basically work like traits, but are named differently.
+     */
+    mixin declarationAndProperties!("armyCharacteristic[]", "characteristics");
+
+    /**
      * Utility function to provide a summation function
      *
      * @param x integer of which to get a summation
@@ -108,6 +116,7 @@ class armyProfile {
      */
     this() {
         armyStats = new statList();
+        characteristics = armyCharacteristic.populate(armyStats);
     }
 
     /**
